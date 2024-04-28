@@ -1,12 +1,13 @@
 require("dotenv").config()
+
 const express = require("express")
-const inventItemRoutes = require("./routes/inventItemRoutes.js")
+const inventItemRoutes = require("./routes/inventItemRoutes")
 
 // express app
 const app = express()
 
 // middleware
-app.use(express.json())
+app.use(express.json()) // prepare us for later (use of middleware)
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
@@ -21,7 +22,7 @@ app.get("/", (req, res) => {
 }) */
 
 // routes (with Router)
-app.use("api/inventitems", inventItemRoutes)
+app.use("/api/inventitems", inventItemRoutes)
 
 // listen for requests
 app.listen(process.env.PORT, () => {
