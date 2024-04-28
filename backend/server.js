@@ -2,6 +2,7 @@ require("dotenv").config()
 
 const express = require("express")
 const inventItemRoutes = require("./routes/inventItemRoutes")
+const mongoose = require("mongoose")
 
 // express app
 const app = express()
@@ -14,7 +15,7 @@ app.use((req, res, next) => {
     next()
 })
 
-// routes (test API)
+// routes (test local API)
 /*
 app.get("/", (req, res) => {
     res.json({message: "Welcome to the apps"})
@@ -24,9 +25,17 @@ app.get("/", (req, res) => {
 // routes (with Router)
 app.use("/api/inventitems", inventItemRoutes)
 
-// listen for requests
-app.listen(process.env.PORT, () => {
-    console.log("listening on port 4000")
+// connnect to db
+mongoose.connect(process.env.MONGO_URI)
+.then(() => {
+    // listen for requests
+    app.listen(process.env.PORT, () => {
+    console.log("connected to db & listening on port 4000")
 })
+})
+.catch((error) => {
+    console.log(error)
+})
+
 
 //process.env
