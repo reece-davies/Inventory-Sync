@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 }) */
 
 // routes (with Router)
-app.use("/api/inventitems", inventItemRoutes)
+app.use('/api/inventitems', inventItemRoutes)
 
 // connnect to db
 mongoose.connect(process.env.MONGO_URI)

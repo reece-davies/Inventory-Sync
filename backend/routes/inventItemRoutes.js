@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const inventItem = require('../models/inventItemModel')
+const InventItem = require('../models/inventItemModel')
 
 // GET all inventory items
 router.get("/", (req, res) => {
@@ -15,9 +15,15 @@ router.get("/:id", (req, res) => {
 })
 
 // POST an inventory item
-router.post("/", (req, res) => {
+router.post("/", async (req, res) => {
     const {title, status, notes} = req.body
-    res.json({mssg: "POST a new inventory item"})
+    try {
+        const inventItem = await InventItem.create({title, status, notes})
+        res.status(200).json(inventItem)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+    //res.json({mssg: "POST a new inventory item"})
 })
 
 // DELETE an inventory item

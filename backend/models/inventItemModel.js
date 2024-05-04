@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const schema = mongoose.Schema()
+const Schema = mongoose.Schema
 
 const inventItemSchema = new Schema({
     title: {
@@ -16,4 +16,4 @@ const inventItemSchema = new Schema({
     }
 }, { timestamps: true })
 
-model.exports = mongoose.model('InventItem', inventItemSchema)
+module.exports = mongoose.model('InventItem', inventItemSchema)
