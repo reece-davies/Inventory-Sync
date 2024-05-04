@@ -1,6 +1,7 @@
-const express = require("express")
-
+const express = require('express')
 const router = express.Router()
+
+const inventItem = require('../models/inventItemModel')
 
 // GET all inventory items
 router.get("/", (req, res) => {
@@ -15,6 +16,7 @@ router.get("/:id", (req, res) => {
 
 // POST an inventory item
 router.post("/", (req, res) => {
+    const {title, status, notes} = req.body
     res.json({mssg: "POST a new inventory item"})
 })
 

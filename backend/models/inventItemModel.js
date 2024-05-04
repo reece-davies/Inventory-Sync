@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require('mongoose')
 
 const schema = mongoose.Schema()
 
@@ -15,3 +15,5 @@ const inventItemSchema = new Schema({
         type: String
     }
 }, { timestamps: true })
+
+model.exports = mongoose.model('InventItem', inventItemSchema)
