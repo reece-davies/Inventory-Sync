@@ -16,9 +16,9 @@ router.get("/:id", (req, res) => {
 
 // POST an inventory item
 router.post("/", async (req, res) => {
-    const {title, status, notes} = req.body
+    const {title, description, group, status} = req.body
     try {
-        const inventItem = await InventItem.create({title, status, notes})
+        const inventItem = await InventItem.create({title, description, group, status})
         res.status(200).json(inventItem)
     } catch (error) {
         res.status(400).json({error: error.message})
