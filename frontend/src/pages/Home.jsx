@@ -9,6 +9,7 @@ const Home = () => {
             try {
                 const response = await fetch('/api/inventory')
                 console.log(response)
+
                 if (!response.ok) {
                     throw new Error('Failed to fetch inventory')
                 }
@@ -22,17 +23,7 @@ const Home = () => {
                 setInventory(json)
             } catch (error) {
                 console.error('Error fetching inventory:', error)
-                // Optionally, set an error state or display a message to the user
             }
-
-
-            /*
-            const response = await fetch('/api/inventory')
-            const json = await response.json()
-
-            if (response.ok) {
-                setInventory(json)
-            } */
         }
 
         fetchInventory()
