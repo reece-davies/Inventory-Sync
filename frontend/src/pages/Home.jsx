@@ -2,6 +2,7 @@ import {useEffect, useState } from 'react'
 
 // components
 import InventoryDetails from '../components/InventoryDetails.jsx'
+import InventoryForm from '../components/InventoryForm.jsx'
 
 const Home = () => {
 
@@ -51,6 +52,7 @@ const Home = () => {
                     ))}
                 </table>
             </div>
+            <InventoryForm />
         </div>
     )
 }
