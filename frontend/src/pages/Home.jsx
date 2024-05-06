@@ -33,9 +33,9 @@ const Home = () => {
     }, [])
     return (
         <div className="home">
-            <h2>Home page</h2>
-            <div className="inventory">
-                <table>
+            {/*<h2>Home page</h2>*/}
+            <div className="inventory-div">
+                <table className="inventory-table">
                     <thead>
                         <tr>
                             <th>_id</th>
@@ -51,8 +51,6 @@ const Home = () => {
                     ))}
                 </table>
             </div>
-            
-            
         </div>
     )
 }

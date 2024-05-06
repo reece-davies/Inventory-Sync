@@ -1,6 +1,6 @@
 const InventoryDetails = ({ inventory}) => {
     return (
-        <tbody className="inventory-details">
+        <tbody>
              <tr key={inventory._id}>
                     <td>{inventory._id}</td>
                     <td>{inventory.title}</td>

@@ -1,4 +1,6 @@
 /*** Index CSS ***/
+/* * { border: 1px dotted red; } */
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
@@ -10,18 +12,23 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   */
+
+  --good: #1aac83;
+  --bad: #e7195a;
+  --primary-blue: #61DBFB;
+  --secondary-blue: #49a4bc;
 }
 
 a {
   font-weight: 500;
-  color: #61DBFB;
+  color: var(--primary-blue);
   text-decoration: inherit;
 }
 a:hover {
-  color: #49a4bc;
+  color: var(--secondary-blue);
 }
 
-/* Didn't like how it was changing the app interface
+/* Centers everything (didn't like it)
 body {
   margin: 0;
   display: flex;
@@ -44,19 +51,15 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-}*/
+}
 
 .card {
   padding: 2em;
-}
+}*/
+
+
 
 /*** Custom CSS ***/
-/* * { border: 1px dotted red; } */
-
-:root {
-  --primary: #1aac83;
-  --secondary: #e7195a;
-}
 
 body {
   background: #f1f1f1;
@@ -82,11 +85,35 @@ header .container {
   margin: 0 auto;
 }
 
-table {
-  border-collapse: collapse;
+.home {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 100px;
 }
 
-table, th, td {
+.inventory-div {
+  overflow-x: auto;
+}
+.inventory-table {
+  border-collapse: collapse;
+   width: 100%;
+  /* box-shadow: 2px 2px 5px #111; */
+}
+
+.inventory-table td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.inventory-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.inventory-table tr:hover {background-color: #ddd;}
+
+.inventory-table th {
+  text-align: left;
+  background-color: var(--secondary-blue);
+  color: white;
+
   padding: 8px;
   border: 1px solid;
 }
