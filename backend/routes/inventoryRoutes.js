@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 //const InventItem = require('../models/inventItemModel') // no longer required due to controller in place
-const {CreateInventItem, GetAllInventory, GetInventItem, DeleteInventItem, UpdateInventItem} = require('../controllers/inventItemController')
+const {CreateInventItem, GetAllInventory, GetInventItem, DeleteInventItem, UpdateInventItem} = require('../controllers/inventoryController')
 
 // GET all inventory items
 router.get("/", GetAllInventory)

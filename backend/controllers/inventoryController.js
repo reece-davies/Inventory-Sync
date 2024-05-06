@@ -1,4 +1,4 @@
-const InventItem = require('../models/inventItemModel')
+const InventItem = require('../models/inventoryModel')
 const mongoose = require('mongoose')
 
 // get all inventory items
