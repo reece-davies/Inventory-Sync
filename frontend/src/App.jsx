@@ -3,7 +3,7 @@ import './styles.css'
 
 // pages and components
 import Home from './pages/Home.jsx'
-import Navbar from './components/navbar.jsx'
+import Navbar from './components/Navbar.jsx'
 
 function App() {
   return (

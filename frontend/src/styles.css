@@ -81,3 +81,12 @@ header .container {
   padding: 1em;
   margin: 0 auto;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  padding: 8px;
+  border: 1px solid;
+}

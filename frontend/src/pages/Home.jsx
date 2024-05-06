@@ -1,5 +1,8 @@
 import {useEffect, useState } from 'react'
 
+// components
+import InventoryDetails from '../components/InventoryDetails.jsx'
+
 const Home = () => {
 
     const [inventory, setInventory] = useState(null)
@@ -32,10 +35,24 @@ const Home = () => {
         <div className="home">
             <h2>Home page</h2>
             <div className="inventory">
-                {inventory && inventory.map((inventItem) => (
-                    <p key={inventItem._id}>{inventItem.title}</p>
-                ))}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>_id</th>
+                            <th>title</th>
+                            <th>description</th>
+                            <th>group</th>
+                            <th>status</th>
+                            <th>updatedAt</th>
+                        </tr>
+                    </thead>
+                    {inventory && inventory.map((inventItem) => (
+                        <InventoryDetails key={inventItem._id} inventory={inventItem} />
+                    ))}
+                </table>
             </div>
+            
+            
         </div>
     )
 }
