@@ -45,6 +45,7 @@ const Home = () => {
                             <th>group</th>
                             <th>status</th>
                             <th>updatedAt</th>
+                            <th>action</th>
                         </tr>
                     </thead>
                     {inventory && inventory.map((inventItem) => (
