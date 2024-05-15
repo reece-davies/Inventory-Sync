@@ -31,7 +31,7 @@ const Home = () => {
         }
 
         fetchInventory()
-    }, [])
+    }, [inventory])
     return (
         <div className="home">
             {/*<h2>Home page</h2>*/}

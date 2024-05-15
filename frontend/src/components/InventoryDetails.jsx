@@ -1,14 +1,21 @@
 const InventoryDetails = ({ inventory}) => {
 
-    const handleClick = async () => {
+    const handleDelete = async () => {
         const response = await fetch('/api/inventory/' + inventory._id, {
-            method: 'DELETE'
+            method: 'DELETE',
+            body: JSON.stringify(inventory),
+            headers: {
+                'Content-Type': 'application/json'
+            }
         })
+        console.log(response)
         const json = await response.json()
 
-        if (response.ok) {
-            //DELETE WORKOUT USING CONTEXT
-            // use InventoryForm for understanding
+        if (!response.ok) {
+            setError(json.error)
+        }
+        else if (response.ok) {
+            console.log("Inventory item deleted", json)
         }
     }
 
@@ -22,7 +29,7 @@ const InventoryDetails = ({ inventory}) => {
                     <td>{inventory.group}</td>
                     <td>{inventory.status}</td>
                     <td>{inventory.updatedAt}</td>
-                    <td><button>Edit</button><button>Delete</button></td>
+                    <td><button>Edit</button><button onClick={handleDelete}>Delete</button></td>
                 </tr>
         </tbody>
     )

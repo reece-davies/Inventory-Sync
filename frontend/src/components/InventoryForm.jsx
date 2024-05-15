@@ -31,7 +31,7 @@ const InventoryForm = () => {
             setGroup("")
             setStatus("")
             setError(null)
-            console.log("New workout added", json)
+            console.log("New inventory item added", json)
         }
 
 
