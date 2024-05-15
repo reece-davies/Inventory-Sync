@@ -30,8 +30,15 @@ const InventoryPage = () => {
             }
         }
 
-        fetchInventory()
-    }, [inventory])
+        const interval = setInterval(() => {
+            fetchInventory()
+        }, 1000);
+
+        //Clearing the interval
+        return () => clearInterval(interval);
+
+        //fetchInventory()
+    }, [])
     return (
         <div className="home">
             {/*<h2>Home page</h2>*/}
