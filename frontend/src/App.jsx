@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './styles.css'
 
 // pages and components
-import Home from './pages/Home.jsx'
+import InventoryPage from './pages/InventoryPage.jsx'
 import Navbar from './components/Navbar.jsx'
 
 function App() {
@@ -14,7 +14,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<Home/>}
+                element={<InventoryPage/>}
               />
             </Routes>
             
