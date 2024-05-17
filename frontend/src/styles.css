@@ -85,7 +85,7 @@ header .container {
   margin: 0 auto;
 }
 
-.home {
+.inventory-page {
   display: grid;
   grid-template-columns: 3fr 1fr;
   gap: 3em; /* was 100px */
