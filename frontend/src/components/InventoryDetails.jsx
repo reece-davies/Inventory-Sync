@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 const InventoryDetails = ({ inventory}) => {
 
     const handleDelete = async () => {
@@ -29,7 +31,7 @@ const InventoryDetails = ({ inventory}) => {
                     <td>{inventory.group}</td>
                     <td>{inventory.status}</td>
                     <td>{inventory.updatedAt}</td>
-                    <td><button>Edit</button><button onClick={handleDelete}>Delete</button></td>
+                    <td><button><Link className="button-link" to={`/inventory/edit/${inventory._id}`}>Edit</Link></button><button onClick={handleDelete}>Delete</button></td>
                 </tr>
         </tbody>
     )

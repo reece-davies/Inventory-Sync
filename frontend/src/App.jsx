@@ -4,6 +4,7 @@ import './styles.css'
 // pages and components
 import InventoryPage from './pages/InventoryPage.jsx'
 import Navbar from './components/Navbar.jsx'
+import EditInventItemPage from './pages/EditInventItemPage.jsx'
 
 function App() {
   return (
@@ -15,6 +16,10 @@ function App() {
               <Route
                 path="/"
                 element={<InventoryPage/>}
+              />
+              <Route
+                path="/inventory/edit/"
+                element={<EditInventItemPage/>}
               />
             </Routes>
             

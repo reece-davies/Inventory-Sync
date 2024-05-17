@@ -1,11 +1,12 @@
-import {useEffect, useState  } from 'react'
+import {useEffect, useState, useRef  } from 'react'
 
 // components
 import InventoryDetails from '../components/InventoryDetails.jsx'
 import InventoryForm from '../components/InventoryForm.jsx'
 
-const InventoryPage = () => {
+const EditInventItemPage = () => {
 
+/*
     const [inventory, setInventory] = useState(null)
 
     useEffect(() => {
@@ -38,11 +39,11 @@ const InventoryPage = () => {
         return () => clearInterval(interval);
 
         //fetchInventory()
-    }, [])
+    }, []) */
     return (
         <div>
-            <h2>Inventory</h2>
-            <div className="inventory-page">
+            <h2>Edit Inventory Item</h2>
+            <div className="edit-inventory-page">
                 {/*<h2>Home page</h2>*/}
                 <div className="inventory-div">
                     <table className="inventory-table">
@@ -56,16 +57,15 @@ const InventoryPage = () => {
                                 <th>updatedAt</th>
                                 <th>action</th>
                             </tr>
-                        </thead>
+                        </thead>{/* 
                         {inventory && inventory.map((inventItem) => (
                             <InventoryDetails key={inventItem._id} inventory={inventItem} />
-                        ))}
+                        ))} */}
                     </table>
                 </div>
-                <InventoryForm />
             </div>
         </div>
     )
 }
 
-export default InventoryPage
+export default EditInventItemPage

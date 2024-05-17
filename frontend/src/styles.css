@@ -91,6 +91,10 @@ header .container {
   gap: 3em; /* was 100px */
 }
 
+.edit-inventory-page {
+  display: grid;
+}
+
 .inventory-div {
   overflow-x: auto;
 }
@@ -117,4 +121,9 @@ header .container {
 
   padding: 8px;
   border: 1px solid;
+}
+
+.button-link {
+  color: inherit;
+  text-decoration: inherit;
 }
