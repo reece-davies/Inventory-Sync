@@ -14,11 +14,11 @@ function App() {
           <div className="pages">
             <Routes>
               <Route
-                path="/"
+                path='/'
                 element={<InventoryPage/>}
               />
               <Route
-                path="/inventory/edit/"
+                path='/inventory/edit/:id'
                 element={<EditInventItemPage/>}
               />
             </Routes>

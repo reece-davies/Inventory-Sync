@@ -1,19 +1,19 @@
-import {useEffect, useState, useRef  } from 'react'
+import {useEffect, useState  } from 'react'
+import { json, useParams } from 'react-router-dom'
 
 // components
-import InventoryDetails from '../components/InventoryDetails.jsx'
-import InventoryForm from '../components/InventoryForm.jsx'
+import InventoryDetails from '../components/InventoryDetails.jsx';
 
 const EditInventItemPage = () => {
-
-/*
+    /* */
+    const { id } = useParams();
     const [inventory, setInventory] = useState(null)
 
     useEffect(() => {
         const fetchInventory = async () => {
             try {
-                const response = await fetch('/api/inventory')
-                console.log(response)
+                const response = await fetch('/api/inventory/' + id.toString())
+                console.log("Response = ", response)
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch inventory')
@@ -26,6 +26,7 @@ const EditInventItemPage = () => {
                 
                 const json = await response.json()
                 setInventory(json)
+                console.log("JSON = ", json)
             } catch (error) {
                 console.error('Error fetching inventory:', error)
             }
@@ -38,30 +39,15 @@ const EditInventItemPage = () => {
         //Clearing the interval
         return () => clearInterval(interval);
 
-        //fetchInventory()
-    }, []) */
+    }, [])
     return (
         <div>
             <h2>Edit Inventory Item</h2>
+            <p>ID = {id}</p>
             <div className="edit-inventory-page">
-                {/*<h2>Home page</h2>*/}
+                {/*<h2>Edit Inevntory Item</h2>*/}
                 <div className="inventory-div">
-                    <table className="inventory-table">
-                        <thead>
-                            <tr>
-                                <th>_id</th>
-                                <th>title</th>
-                                <th>description</th>
-                                <th>group</th>
-                                <th>status</th>
-                                <th>updatedAt</th>
-                                <th>action</th>
-                            </tr>
-                        </thead>{/* 
-                        {inventory && inventory.map((inventItem) => (
-                            <InventoryDetails key={inventItem._id} inventory={inventItem} />
-                        ))} */}
-                    </table>
+
                 </div>
             </div>
         </div>

@@ -12,7 +12,7 @@ const InventoryPage = () => {
         const fetchInventory = async () => {
             try {
                 const response = await fetch('/api/inventory')
-                console.log(response)
+                console.log("Response = ", response)
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch inventory')
@@ -25,6 +25,8 @@ const InventoryPage = () => {
                 
                 const json = await response.json()
                 setInventory(json)
+                console.log("Json = ", json)
+                //console.log("Inventory = ", inventory)
             } catch (error) {
                 console.error('Error fetching inventory:', error)
             }
