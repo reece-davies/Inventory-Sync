@@ -4,9 +4,15 @@ import { useParams } from 'react-router-dom'
 // components
 
 const EditInventItemPage = () => {
-    /* */
+    const initialState = {
+        _id: 'Loading',
+        title: 'Loading',
+        description: 'Loading',
+        group: 'Loading',
+        status: 'Loading'
+      }
     const { id } = useParams();
-    const [inventory, setInventory] = useState("")
+    const [inventory, setInventory] = useState(initialState)
     //console.log("Inventory (1) = ", inventory)
 
     useEffect(() => {
