@@ -7,12 +7,13 @@ import InventoryForm from '../components/InventoryForm.jsx'
 const InventoryPage = () => {
 
     const [inventory, setInventory] = useState(null)
+    //console.log("Inventory (1) = ", inventory)
 
     useEffect(() => {
         const fetchInventory = async () => {
             try {
                 const response = await fetch('/api/inventory')
-                console.log("Response = ", response)
+                //console.log("Response = ", response)
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch inventory')
@@ -24,9 +25,10 @@ const InventoryPage = () => {
                 }
                 
                 const json = await response.json()
+                console.log("JSON = ", json)
+                //console.log("Inventory (2) = ", inventory)
                 setInventory(json)
-                console.log("Json = ", json)
-                //console.log("Inventory = ", inventory)
+                //console.log("Inventory (3) = ", inventory)
             } catch (error) {
                 console.error('Error fetching inventory:', error)
             }
