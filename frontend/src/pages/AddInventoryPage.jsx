@@ -46,28 +46,9 @@ const InventoryPage = () => {
     }, [])
     return (
         <div>
-            <h2>Inventory</h2>
-            <button><Link className="button-link" to={'/inventory/add/'}>Add Inventory Item</Link></button>
-            <div className="inventory-page">
-                {/*<h2>Home page</h2>*/}
-                <div className="inventory-div">
-                    <table className="inventory-table">
-                        <thead>
-                            <tr>
-                                <th>_id</th>
-                                <th>title</th>
-                                <th>description</th>
-                                <th>group</th>
-                                <th>status</th>
-                                <th>updatedAt</th>
-                                <th>action</th>
-                            </tr>
-                        </thead>
-                        {inventory && inventory.map((inventItem) => (
-                            <InventoryDetails key={inventItem._id} inventory={inventItem} />
-                        ))}
-                    </table>
-                </div>
+            <h2>Add Inventory Item</h2>
+            <div className="add-inventory-page">
+                <InventoryForm />
             </div>
         </div>
     )

@@ -38,7 +38,7 @@ const InventoryForm = () => {
     }
     return (
         <form className="create-inventory-form" onSubmit={handSubmit}>
-            <h3>Add Inventory Item</h3>
+            {/*<h3>Add Inventory Item</h3>*/}
 
             <label>Title</label> <br/>
             <input
@@ -65,7 +65,7 @@ const InventoryForm = () => {
                 value={status} 
             /> <br/>
 
-            <button>Add Inventory Item</button>
+            <button>Submit</button>
             {error && <div className="error-msg">{error}</div>}
         </form>
     )

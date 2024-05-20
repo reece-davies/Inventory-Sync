@@ -91,14 +91,11 @@ header .navbar-container {
   margin: 0 auto;
 }
 
-.inventory-page {
+.inventory-page .edit-inventory-page .add-inventory-page  {
   display: grid;
+  /* ** Used when form was on same page as inventory page **
   grid-template-columns: 3fr 1fr;
-  gap: 3em; /* was 100px */
-}
-
-.edit-inventory-page {
-  display: grid;
+  gap: 3em;  *** was 100px */
 }
 
 .inventory-div {
