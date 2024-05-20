@@ -4,7 +4,7 @@ import './styles.css'
 // pages and components
 import InventoryPage from './pages/InventoryPage.jsx'
 import Navbar from './components/Navbar.jsx'
-import EditInventItemPage from './pages/EditInventItemPage.jsx'
+import EditInventoryPage from './pages/EditInventoryPage.jsx'
 import AddInventoryPage from './pages/AddInventoryPage.jsx'
 
 function App() {
@@ -20,7 +20,7 @@ function App() {
               />
               <Route
                 path='/inventory/edit/:id'
-                element={<EditInventItemPage/>}
+                element={<EditInventoryPage/>}
               />
               <Route
                 path='/inventory/add/'
