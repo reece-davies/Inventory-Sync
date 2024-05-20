@@ -17,6 +17,7 @@
   --bad: #e7195a;
   --primary-blue: #61DBFB;
   --secondary-blue: #49a4bc;
+  --text-colour: #232323;
 }
 
 a {
@@ -70,7 +71,7 @@ header {
   background: #fff;
 }
 
-header .container {
+header .navbar-container {
   /*max-width: 1400px;*/
   margin: 0 auto;
   padding: 0 1em;
@@ -78,6 +79,10 @@ header .container {
   align-items: center;
   gap: 2em;
   /* justify-content: space-between; */
+}
+
+.navbar-content {
+  color: black;
 }
 
 .pages {
