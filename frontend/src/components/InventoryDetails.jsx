@@ -19,6 +19,7 @@ const InventoryDetails = ({ inventory}) => {
         else if (response.ok) {
             console.log("Inventory item deleted", json)
         }
+        alert("Item deleted")
     }
 
 
@@ -31,7 +32,7 @@ const InventoryDetails = ({ inventory}) => {
                     <td>{inventory.group}</td>
                     <td>{inventory.status}</td>
                     <td>{inventory.updatedAt}</td>
-                    <td><button><Link className="button-link" to={`/inventory/edit/${inventory._id}`}>Edit</Link></button><button onClick={handleDelete}>Delete</button></td>
+                    <td><button className="button-default"><Link className="button-link" to={`/inventory/edit/${inventory._id}`}>Edit</Link></button><button className="button-default" onClick={handleDelete}>Delete</button></td>
                 </tr>
         </tbody>
     )

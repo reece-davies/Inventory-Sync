@@ -130,3 +130,8 @@ header .navbar-container {
   color: inherit;
   text-decoration: inherit;
 }
+
+.button-default:hover{
+  color: var(--secondary-blue);
+  cursor: pointer;
+}

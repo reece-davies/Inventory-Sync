@@ -47,7 +47,7 @@ const InventoryPage = () => {
     return (
         <div>
             <h2>Inventory</h2>
-            <button><Link className="button-link" to={'/inventory/add/'}>Add Inventory Item</Link></button>
+            <button className="button-default"><Link className="button-link" to={'/inventory/add/'}>Add Inventory Item</Link></button>
             <div className="inventory-page">
                 {/*<h2>Home page</h2>*/}
                 <div className="inventory-div">
