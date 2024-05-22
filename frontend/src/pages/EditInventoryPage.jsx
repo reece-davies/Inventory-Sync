@@ -2,14 +2,15 @@ import {useEffect, useState  } from 'react'
 import { useParams } from 'react-router-dom'
 
 // components
+import EditInventoryForm from '../components/EditInventoryForm.jsx'
 
 const EditInventItemPage = () => {
     const initialState = {
-        _id: 'Loading',
-        title: 'Loading',
-        description: 'Loading',
-        group: 'Loading',
-        status: 'Loading'
+        _id: '...',
+        title: '...',
+        description: '...',
+        group: '...',
+        status: '...'
       }
     const { id } = useParams();
     const [inventory, setInventory] = useState(initialState)
@@ -53,18 +54,20 @@ const EditInventItemPage = () => {
     return (
         <div>
             <h2>Edit Inventory Item</h2>
+            <div className="edit-inventory-page">
+                <EditInventoryForm key={inventory._id} inventory={inventory}/>
+            </div>
+
+
+            {/* Testing phase
+            <h4>Variable Checker</h4>
             <p>URL ID = {id}</p>
             <p>ID = {inventory._id}</p>
             <p>Title = {inventory.title}</p>
             <p>Description = {inventory.description}</p>
             <p>Group = {inventory.group}</p>
             <p>Status = {inventory.status}</p>
-            
-            <div className="edit-inventory-page">
-                {/*<h2>Edit Inevntory Item</h2>*/}
-                <div className="inventory-div">
-                </div>
-            </div>
+            */}
         </div>
     )
 }

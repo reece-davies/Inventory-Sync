@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-const InventoryDetails = ({ inventory}) => {
+const InventoryDetails = ({ inventory }) => {
 
     const handleDelete = async () => {
         const response = await fetch('/api/inventory/' + inventory._id, {

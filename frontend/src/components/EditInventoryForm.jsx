@@ -1,22 +1,22 @@
 import { useState } from "react"
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
 
-const InventoryForm = () => {
-    const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const [group, setGroup] = useState('')
-    const [status, setStatus] = useState('')
+const EditInventoryForm = ({ inventory }) => {
+    const [title, setTitle] = useState(inventory.title)
+    const [description, setDescription] = useState(inventory.description)
+    const [group, setGroup] = useState(inventory.group)
+    const [status, setStatus] = useState(inventory.status)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
     const handSubmit = async (e) => {
         e.preventDefault()
 
-        const inventory = {title, description, group, status}
+        const editedInventory = {title, description, group, status}
 
-        const response = await fetch('/api/inventory', {
-            method: 'POST',
-            body: JSON.stringify(inventory),
+        const response = await fetch('/api/inventory/'+inventory._id, {
+            method: 'PATCH',
+            body: JSON.stringify(editedInventory),
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -32,11 +32,11 @@ const InventoryForm = () => {
             //setDescription("")
             //setGroup("")
             //setStatus("")
-            setError(null)
-            console.log("New inventory item added", json)
+            //setError(null)
+            console.log("Inventory item edited", json)
 
             // Alert user
-            alert("Item added")
+            alert("Item edited")
             
             // Navigate back to inventory
             navigate("/inventory/")
@@ -45,7 +45,7 @@ const InventoryForm = () => {
 
     }
     return (
-        <form className="create-inventory-form" onSubmit={handSubmit}>
+        <form className="edit-inventory-form" onSubmit={handSubmit}>
             {/*<h3>Add Inventory Item</h3>*/}
 
             <label>Title</label> <br/>
@@ -79,4 +79,4 @@ const InventoryForm = () => {
     )
 }
 
-export default InventoryForm
+export default EditInventoryForm
