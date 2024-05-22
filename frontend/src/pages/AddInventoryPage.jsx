@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 // components
 //
-import InventoryForm from '../components/InventoryForm.jsx'
+import InventoryForm from '../components/AddInventoryForm.jsx'
 
 const InventoryPage = () => {
     //
