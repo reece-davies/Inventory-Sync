@@ -11,10 +11,12 @@ const inventItemSchema = new Schema({
         type: String
     },
     group: {
-        type: String
+        type: String,
+        required: true
     },
     status: {
-        type: String
+        type: String,
+        required: true
     },
 }, { timestamps: true })
 
