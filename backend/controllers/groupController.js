@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const GetAllGroups = async (req, res) => {
     //res.json({mssg: "GET all groups"})
     try {
-        const group = await Group.find({}).sort({createdAt: -1})
+        const group = await Group.find({}).sort({createdAt: +1})
         res.status(200).json(group)
     } catch (error) {
         res.status(400).json({error: error.message})

@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const GetAllInventory = async (req, res) => {
     //res.json({mssg: "GET all inventory items"})
     try {
-        const inventItem = await InventItem.find({}).sort({createdAt: -1})
+        const inventItem = await InventItem.find({}).sort({createdAt: +1})
         res.status(200).json(inventItem)
     } catch (error) {
         res.status(400).json({error: error.message})
