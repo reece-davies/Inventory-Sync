@@ -25,7 +25,7 @@ app.get("/", (req, res) => {
 
 // routes (with Router)
 app.use('/api/inventory', inventoryRoutes)
-app.use('/api/group', groupRoutes)
+app.use('/api/groups', groupRoutes)
 
 // connnect to db
 mongoose.connect(process.env.MONGO_URI)
