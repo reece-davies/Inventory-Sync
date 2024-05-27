@@ -7,6 +7,7 @@ import InventoryPage from './pages/InventoryPage.jsx'
 import EditInventoryPage from './pages/EditInventoryPage.jsx'
 import AddInventoryPage from './pages/AddInventoryPage.jsx'
 import GroupPage from './pages/GroupPage.jsx'
+import AddGroupPage from './pages/AddGroupPage.jsx'
 
 function App() {
   return (
@@ -30,6 +31,10 @@ function App() {
               <Route
                 path='/groups/'
                 element={<GroupPage/>}
+              />
+              <Route
+                path='/groups/add/'
+                element={<AddGroupPage/>}
               />
             </Routes>
             

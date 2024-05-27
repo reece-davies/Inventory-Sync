@@ -43,9 +43,9 @@ const GroupPage = () => {
         <div>
             <h2>Groups</h2>
             <button className="button-default"><Link className="button-link" to={'/groups/add/'}>Add Group</Link></button>
-            <div className="inventory-page">
+            <div className="groups-page">
                 {/*<h2>Home page</h2>*/}
-                <div className="inventory-div">
+                <div className="groups-table-container">
                     <table className="inventory-table">
                         <thead>
                             <tr>

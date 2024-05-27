@@ -1,7 +1,7 @@
 /*** Index CSS ***/
  /* * { border: 1px dotted red; } */
 
-:root {
+ :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   font-weight: 400;
 
@@ -89,18 +89,24 @@ header .navbar-container {
   /*max-width: 1400px;*/
   padding: 1em;
   margin: 0 auto;
+  display: grid;
 }
 
-.inventory-page .edit-inventory-page .add-inventory-page  {
+.inventory-page, .edit-inventory-page, .add-inventory-page, .groups-page, .add-group-page, .edit-group-page {
   display: grid;
   /* ** Used when form was on same page as inventory page **
   grid-template-columns: 3fr 1fr;
   gap: 3em;  *** was 100px */
 }
 
-.inventory-div {
+.create-inventory-form, .create-group-form {
+  /*background-color: white;*/
+}
+
+.inventory-table-container, .groups-table-container {
   overflow-x: auto;
 }
+
 .inventory-table {
   border-collapse: collapse;
    width: 100%;

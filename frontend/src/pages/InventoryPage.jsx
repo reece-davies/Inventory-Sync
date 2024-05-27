@@ -50,7 +50,7 @@ const InventoryPage = () => {
             <button className="button-default"><Link className="button-link" to={'/inventory/add/'}>Add Inventory Item</Link></button>
             <div className="inventory-page">
                 {/*<h2>Home page</h2>*/}
-                <div className="inventory-div">
+                <div className="inventory-table-container">
                     <table className="inventory-table">
                         <thead>
                             <tr>
