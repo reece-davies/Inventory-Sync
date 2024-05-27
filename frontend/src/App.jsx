@@ -2,10 +2,11 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './styles.css'
 
 // pages and components
-import InventoryPage from './pages/InventoryPage.jsx'
 import Navbar from './components/Navbar.jsx'
+import InventoryPage from './pages/InventoryPage.jsx'
 import EditInventoryPage from './pages/EditInventoryPage.jsx'
 import AddInventoryPage from './pages/AddInventoryPage.jsx'
+import GroupPage from './pages/GroupPage.jsx'
 
 function App() {
   return (
@@ -25,6 +26,10 @@ function App() {
               <Route
                 path='/inventory/add/'
                 element={<AddInventoryPage/>}
+              />
+              <Route
+                path='/groups/'
+                element={<GroupPage/>}
               />
             </Routes>
             

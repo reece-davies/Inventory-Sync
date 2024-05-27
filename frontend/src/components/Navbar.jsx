@@ -10,7 +10,7 @@ const Navbar = () => {
                 <Link to="/inventory/" className='navbar-content'>
                     <h4>Inventory</h4>
                 </Link>
-                <Link to="/" className='navbar-content'>
+                <Link to="/groups/" className='navbar-content'>
                     <h4>Groups</h4>
                 </Link>
             </div>
