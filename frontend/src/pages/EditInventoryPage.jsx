@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom'
 // components
 import EditInventoryForm from '../components/EditInventoryForm.jsx'
 
-const EditInventItemPage = () => {
+const EditInventoryPage = () => {
     const initialState = {
         _id: '...',
         title: '...',
@@ -72,4 +72,4 @@ const EditInventItemPage = () => {
     )
 }
 
-export default EditInventItemPage
+export default EditInventoryPage
