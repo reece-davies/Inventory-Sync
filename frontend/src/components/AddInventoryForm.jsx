@@ -61,11 +61,17 @@ const InventoryForm = () => {
                 value={description} 
             /> <br/>
             <label>Group</label> <br/>
-            <input
+            {/*<input
                 type="text"
                 onChange={(e) => setGroup(e.target.value)}
                 value={group} 
-            /> <br/>
+            /> <br/> */}
+
+            <select name="group" onChange={(e) => setGroup(e.target.value)}>
+                <option value="group 1">Group 1</option>
+                <option value="group 2">Group 2</option>
+                <option value="group 3">Group 3</option>
+            </select><br/>
             <label>Status</label> <br/>
             <input
                 type="text"
