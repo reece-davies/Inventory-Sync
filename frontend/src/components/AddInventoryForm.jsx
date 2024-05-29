@@ -9,7 +9,7 @@ const InventoryForm = () => {
     }
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [group, setGroups] = useState([]) // Rename to `groups` to avoid confusion
+    const [groups, setGroups] = useState([])
     const [selectedGroupId, setSelectedGroupId] = useState(initialState._id)
     const [status, setStatus] = useState('')
     const [error, setError] = useState(null)
@@ -89,7 +89,7 @@ const InventoryForm = () => {
                 value={selectedGroupId}
                 onChange={(e) => setSelectedGroupId(e.target.value)}>
                 <option value={initialState._id}>Select Group</option>
-                {group.map((groupItem) => (
+                {groups.map((groupItem) => (
                     <option key={groupItem._id} value={groupItem._id}>{groupItem.group_name}</option>
                 ))}
             </select><br/>
