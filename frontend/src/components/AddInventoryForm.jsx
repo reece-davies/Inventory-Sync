@@ -1,22 +1,52 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
 
 const InventoryForm = () => {
+    const initialState = {
+        _id: '0',
+        group_name: 'select_group',
+        notes: 'null'
+    }
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [group, setGroup] = useState('select_group')
+    const [group, setGroups] = useState([]) // Rename to `groups` to avoid confusion
+    const [selectedGroupId, setSelectedGroupId] = useState(initialState._id)
     const [status, setStatus] = useState('')
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
-    const handSubmit = async (e) => {
+    useEffect(() => {
+        const fetchGroups = async () => {
+            try {
+                const response = await fetch('/api/groups')
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch group')
+                }
+                
+                const contentType = response.headers.get('content-type')
+                if (!contentType || !contentType.includes('application/json')) {
+                    throw new Error('Invalid response format - expected JSON')
+                }
+                
+                const json = await response.json()
+                console.log("Groups = ", json)
+                setGroups(json)
+            } catch (error) {
+                console.error('Error fetching group:', error)
+                setError(error.message)
+            }
+        }
+        fetchGroups()
+    }, [])
+
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const inventory = {title, description, group, status}
+        const inventory = {title, description, group: selectedGroupId, status}
 
-        if(group==='select_group') {
-            console.log("ERROR (1) = ", error)
-            return setError("Select Group")
+        if (selectedGroupId === initialState._id) {
+            return setError("Group is required")
         }
 
         const response = await fetch('/api/inventory', {
@@ -29,32 +59,19 @@ const InventoryForm = () => {
         console.log(response)
         const json = await response.json()
 
-        
-
-        if(!response.ok) {
+        if (!response.ok) {
             setError(json.error)
         }
-        if(response.ok) {
-            //setTitle("")
-            //setDescription("")
-            //setGroup("")
-            //setStatus("")
+        if (response.ok) {
             setError(null)
             console.log("New inventory item added", json)
-
-            // Alert user
             alert("Item added")
-            
-            // Navigate back to inventory
             navigate("/inventory/")
         }
-
-
     }
-    return (
-        <form className="create-inventory-form" onSubmit={handSubmit}>
-            {/*<h3>Add Inventory Item</h3>*/}
 
+    return (
+        <form className="create-inventory-form" onSubmit={handleSubmit}>
             <label>Title</label> <br/>
             <input
                 type="text"
@@ -68,19 +85,13 @@ const InventoryForm = () => {
                 value={description} 
             /> <br/>
             <label>Group</label> <br/>
-            {/*<input
-                type="text"
-                onChange={(e) => setGroup(e.target.value)}
-                value={group} 
-            /> <br/> */}
-
             <select
-            value={group}
-            onChange={(e) => setGroup(e.target.value)}>
-                <option value="select_group">Select Group</option>
-                <option value="Group 1">Group 1</option>
-                <option value="Group 2">Group 2</option>
-                <option value="Group 3">Group 3</option>
+                value={selectedGroupId}
+                onChange={(e) => setSelectedGroupId(e.target.value)}>
+                <option value={initialState._id}>Select Group</option>
+                {group.map((groupItem) => (
+                    <option key={groupItem._id} value={groupItem._id}>{groupItem.group_name}</option>
+                ))}
             </select><br/>
             <label>Status</label> <br/>
             <input
