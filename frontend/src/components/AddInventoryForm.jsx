@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom'
 const InventoryForm = () => {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-    const [group, setGroup] = useState('')
+    const [group, setGroup] = useState('select_group')
     const [status, setStatus] = useState('')
     const [error, setError] = useState(null)
     const navigate = useNavigate()
@@ -13,6 +13,11 @@ const InventoryForm = () => {
         e.preventDefault()
 
         const inventory = {title, description, group, status}
+
+        if(group==='select_group') {
+            console.log("ERROR (1) = ", error)
+            return setError("Select Group")
+        }
 
         const response = await fetch('/api/inventory', {
             method: 'POST',
@@ -23,6 +28,8 @@ const InventoryForm = () => {
         })
         console.log(response)
         const json = await response.json()
+
+        
 
         if(!response.ok) {
             setError(json.error)
@@ -67,10 +74,13 @@ const InventoryForm = () => {
                 value={group} 
             /> <br/> */}
 
-            <select name="group" onChange={(e) => setGroup(e.target.value)}>
-                <option value="group 1">Group 1</option>
-                <option value="group 2">Group 2</option>
-                <option value="group 3">Group 3</option>
+            <select
+            value={group}
+            onChange={(e) => setGroup(e.target.value)}>
+                <option value="select_group">Select Group</option>
+                <option value="Group 1">Group 1</option>
+                <option value="Group 2">Group 2</option>
+                <option value="Group 3">Group 3</option>
             </select><br/>
             <label>Status</label> <br/>
             <input
