@@ -5,13 +5,13 @@ const InventoryForm = () => {
     const initialState = {
         _id: '0',
         group_name: 'select_group',
-        notes: 'null'
+        status: 'select_status'
     }
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [groups, setGroups] = useState([])
     const [selectedGroupId, setSelectedGroupId] = useState(initialState._id)
-    const [status, setStatus] = useState('')
+    const [status, setStatus] = useState(initialState.status)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
@@ -45,8 +45,11 @@ const InventoryForm = () => {
 
         const inventory = {title, description, group: selectedGroupId, status}
 
-        if (selectedGroupId === initialState._id) {
+        if (selectedGroupId === initialState._id ) {
             return setError("Group is required")
+        }
+        else if (status === "select_status") {
+            return setError("Status is required")
         }
 
         const response = await fetch('/api/inventory', {
@@ -89,16 +92,21 @@ const InventoryForm = () => {
                 value={selectedGroupId}
                 onChange={(e) => setSelectedGroupId(e.target.value)}>
                 <option value={initialState._id}>Select Group</option>
-                {groups.map((groupItem) => (
-                    <option key={groupItem._id} value={groupItem._id}>{groupItem.group_name}</option>
+                {groups && groups.map((groupItem) => (
+                    <option key={groupItem._id} value={groupItem._id}>{groupItem.group_name} </option>
                 ))}
             </select><br/>
             <label>Status</label> <br/>
-            <input
-                type="text"
-                onChange={(e) => setStatus(e.target.value)}
-                value={status} 
-            /> <br/>
+            <select
+                onChange={(e) => setStatus(e.target.value)}>
+                    <option value={initialState.status}>Select Status</option>
+                    <option value='In stock'>In stock</option>
+                    <option value='Assigned'>Assigned</option>
+                    <option value='Damaged'>Damaged</option>
+                    <option value='Missing'>Missing</option>
+                    <option value='Scrapped'>Scrapped</option>
+                    <option value='Other'>Other</option>
+            </select><br/>
 
             <button>Submit</button>
             {error && <div className="error-msg">{error}</div>}
