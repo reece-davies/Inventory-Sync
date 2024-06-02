@@ -14,8 +14,8 @@
   -moz-osx-font-smoothing: grayscale;
   */
 
-  --good: #1aac83;
-  --bad: #e7195a;
+  --positive: #1aac83;
+  --negative: #e7195a;
   --primary-blue: #61DBFB;
   --secondary-blue: #49a4bc;
   --text-colour: #232323;
@@ -102,6 +102,16 @@ header .navbar-container {
 
 .create-inventory-form, .edit-inventory-form, .create-group-form, .edit-group-form {
   /*background-color: white;*/
+}
+
+.error-msg {
+  padding: 0.6em;
+  background: #ffefef;
+  border: 1px solid var(--negative);
+  color: var(--negative);
+  border-radius: 0.2em;
+  /* cursor: pointer; 
+  margin: 0.4em; */
 }
 
 .inventory-table-container, .groups-table-container {
