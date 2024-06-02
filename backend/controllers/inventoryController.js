@@ -40,6 +40,21 @@ const CreateInventItem = async (req, res) => {
     //res.json({mssg: "POST a new inventory item"})
     const {title, description, group, status} = req.body
 
+    let emptyFields = []
+
+    if(!title) {
+        emptyFields.push('title')
+    }
+    if(group == "0") {
+        emptyFields.push('group')
+    }
+    if(status == "select_status") {
+        emptyFields.push('status')
+    }
+    if(emptyFields.length > 0) {
+        return res.status(400).json({ error: "Please fill in all the required fields", emptyFields})
+    }
+
     // doc to db
     try {
         const inventItem = await InventItem.create({title, description, group, status})

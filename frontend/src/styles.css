@@ -114,6 +114,10 @@ header .navbar-container {
   margin: 0.4em; */
 }
 
+.error {
+  border: 1px solid var(--negative);
+}
+
 .inventory-table-container, .groups-table-container {
   overflow-x: auto;
 }

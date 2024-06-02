@@ -14,6 +14,7 @@ const InventoryForm = () => {
     const [status, setStatus] = useState(initialState.status)
     const [error, setError] = useState(null)
     const navigate = useNavigate()
+    const [emptyFields, setEmptyFields] = useState([])
 
     useEffect(() => {
         const fetchGroups = async () => {
@@ -45,12 +46,15 @@ const InventoryForm = () => {
 
         const inventory = {title, description, group: selectedGroupId, status}
 
-        if (selectedGroupId === initialState._id ) {
+        /*if (title === '') {
+            return setError("Title is required")
+        }
+        else if (selectedGroupId === initialState._id ) {
             return setError("Group is required")
         }
         else if (status === "select_status") {
             return setError("Status is required")
-        }
+        } */
 
         const response = await fetch('/api/inventory', {
             method: 'POST',
@@ -64,6 +68,7 @@ const InventoryForm = () => {
 
         if (!response.ok) {
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
         if (response.ok) {
             setError(null)
@@ -75,11 +80,12 @@ const InventoryForm = () => {
 
     return (
         <form className="create-inventory-form" onSubmit={handleSubmit}>
-            <label>Title</label> <br/>
+            <label>Title*</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
+                className={emptyFields.includes('title') ? 'error' : ''}
             /> <br/>
             <label>Description</label> <br/>
             <input
@@ -87,18 +93,20 @@ const InventoryForm = () => {
                 onChange={(e) => setDescription(e.target.value)}
                 value={description} 
             /> <br/>
-            <label>Group</label> <br/>
+            <label>Group*</label> <br/>
             <select
                 value={selectedGroupId}
-                onChange={(e) => setSelectedGroupId(e.target.value)}>
+                onChange={(e) => setSelectedGroupId(e.target.value)}
+                className={emptyFields.includes('group') ? 'error' : ''}>
                 <option value={initialState._id}>Select Group</option>
                 {groups && groups.map((groupItem) => (
                     <option key={groupItem._id} value={groupItem._id}>{groupItem.group_name} </option>
                 ))}
             </select><br/>
-            <label>Status</label> <br/>
+            <label>Status*</label> <br/>
             <select
-                onChange={(e) => setStatus(e.target.value)}>
+                onChange={(e) => setStatus(e.target.value)}
+                className={emptyFields.includes('status') ? 'error' : ''}>
                     <option value={initialState.status}>Select Status</option>
                     <option value='In stock'>In stock</option>
                     <option value='Assigned'>Assigned</option>

@@ -7,10 +7,14 @@ const GroupForm = () => {
     const [error, setError] = useState(null)
     const navigate = useNavigate()
 
-    const handSubmit = async (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
 
         const group = {group_name, notes}
+
+        if (group_name === '') {
+            return setError("Group Name is required")
+        }
 
         const response = await fetch('/api/groups', {
             method: 'POST',
@@ -39,9 +43,9 @@ const GroupForm = () => {
 
     }
     return (
-        <form className="create-group-form" onSubmit={handSubmit}>
+        <form className="create-group-form" onSubmit={handleSubmit}>
 
-            <label>Group Name</label> <br/>
+            <label>Group Name*</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setGroupName(e.target.value)}
