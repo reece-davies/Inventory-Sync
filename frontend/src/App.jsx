@@ -3,6 +3,7 @@ import './styles.css'
 
 // pages and components
 import Navbar from './components/Navbar.jsx'
+import HomePage from './pages/HomePage.jsx'
 import InventoryPage from './pages/InventoryPage.jsx'
 import EditInventoryPage from './pages/EditInventoryPage.jsx'
 import AddInventoryPage from './pages/AddInventoryPage.jsx'
@@ -17,6 +18,10 @@ function App() {
           <Navbar />
           <div className="pages">
             <Routes>
+              <Route
+                path='/'
+                element={<HomePage/>}
+              />
               <Route
                 path='/inventory/'
                 element={<InventoryPage/>}

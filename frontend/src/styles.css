@@ -93,7 +93,7 @@ header .navbar-container {
   display: grid;
 }
 
-.inventory-page, .edit-inventory-page, .add-inventory-page, .groups-page, .edit-group-page, .add-group-page {
+.inventory-page, .edit-inventory-page, .add-inventory-page, .groups-page, .edit-group-page, .add-group-page, .home-page {
   display: grid;
   /* ** Used when form was on same page as inventory page **
   grid-template-columns: 3fr 1fr;
