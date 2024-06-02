@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 // components
 import GroupDetails from '../components/GroupDetails.jsx'
 
-const GroupPage = () => {
+const GroupsPage = () => {
 
     const [group, setGroup] = useState(null)
 
@@ -65,4 +65,4 @@ const GroupPage = () => {
     )
 }
 
-export default GroupPage
+export default GroupsPage
