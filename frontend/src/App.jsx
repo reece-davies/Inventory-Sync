@@ -6,7 +6,7 @@ import Navbar from './components/Navbar.jsx'
 import InventoryPage from './pages/InventoryPage.jsx'
 import EditInventoryPage from './pages/EditInventoryPage.jsx'
 import AddInventoryPage from './pages/AddInventoryPage.jsx'
-import GroupPage from './pages/GroupPage.jsx'
+import GroupsPage from './pages/GroupsPage.jsx'
 import EditGroupPage from './pages/EditGroupPage.jsx'
 import AddGroupPage from './pages/AddGroupPage.jsx'
 
@@ -31,7 +31,7 @@ function App() {
               />
               <Route
                 path='/groups/'
-                element={<GroupPage/>}
+                element={<GroupsPage/>}
               />
               <Route
                 path='/groups/edit/:id'
