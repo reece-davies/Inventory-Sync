@@ -8,7 +8,7 @@ const GroupDetails = ({ group }) => {
     const handleDelete = async () => {
 
         try {
-            const response = await fetch('/api/inventory/groupID/'+group._id)
+            const response = await fetch('/api/inventory/groupid/'+group._id)
             console.log("Response = ", response)
 
             if (!response.ok) {

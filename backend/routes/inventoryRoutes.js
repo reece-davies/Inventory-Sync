@@ -20,6 +20,6 @@ router.delete("/:id", DeleteInventItem)
 router.patch("/:id", UpdateInventItem)
 
 // GET single inventory item
-router.get("/groupID/:id", GetInventItemFromGroupID)
+router.get("/groupid/:id", GetInventItemFromGroupID)
 
 module.exports = router
