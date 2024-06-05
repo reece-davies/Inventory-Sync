@@ -14,8 +14,14 @@ const LoginUser = async (req, res) => {
 
 // signup user
 const SignupUser = async (req, res) => {
-    res.json({mssg: "Signup user"})
+    //res.json({mssg: "Signup user"})
     
+    try {
+        //
+        res.status(200).json(group)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 

@@ -7,6 +7,6 @@ const {LoginUser, SignupUser} = require('../controllers/userController')
 router.get("/login", LoginUser)
 
 // signup route
-router.get("/signup", SignupUser)
+router.post("/signup", SignupUser)
 
 module.exports = router
