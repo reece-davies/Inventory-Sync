@@ -40,6 +40,8 @@ const CreateGroup = async (req, res) => {
     //res.json({mssg: "POST a new group"})
     const {group_name, notes} = req.body
 
+    let emptyNameField = false;
+
     // doc to db
     try {
         const group = await Group.create({group_name, notes})

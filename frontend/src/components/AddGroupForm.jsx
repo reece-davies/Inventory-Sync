@@ -6,6 +6,7 @@ const GroupForm = () => {
     const [notes, setNotes] = useState('')
     const [error, setError] = useState(null)
     const navigate = useNavigate()
+    const [emptyNameField, setEmptyNameField] = useState(false)
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -13,6 +14,7 @@ const GroupForm = () => {
         const group = {group_name, notes}
 
         if (group_name === '') {
+            setEmptyNameField(true)
             return setError("Group Name is required")
         }
 
@@ -50,6 +52,7 @@ const GroupForm = () => {
                 type="text"
                 onChange={(e) => setGroupName(e.target.value)}
                 value={group_name}
+                className={emptyNameField === true ? 'error' : ''}
             /> <br/>
             <label>Notes</label> <br/>
             <input
