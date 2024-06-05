@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 //const InventItem = require('../models/inventItemModel') // no longer required due to controller in place
-const {CreateInventItem, GetAllInventory, GetInventItem, DeleteInventItem, UpdateInventItem} = require('../controllers/inventoryController')
+const {CreateInventItem, GetAllInventory, GetInventItem, DeleteInventItem, UpdateInventItem, GetInventItemFromGroupID} = require('../controllers/inventoryController')
 
 // GET all inventory items
 router.get("/", GetAllInventory)
@@ -18,5 +18,8 @@ router.delete("/:id", DeleteInventItem)
 
 // DELETE an inventory item
 router.patch("/:id", UpdateInventItem)
+
+// GET single inventory item
+router.get("/groupID/:id", GetInventItemFromGroupID)
 
 module.exports = router

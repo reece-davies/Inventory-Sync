@@ -112,10 +112,35 @@ const UpdateInventItem = async (req, res) => {
     }
 }
 
+// get a single inventory item
+const GetInventItemFromGroupID = async (req, res) => {
+    //res.json({mssg: "GET an inventory item"})
+    try {
+        const { id } = req.params
+
+        // check if mongoose _id is valid
+        if (!mongoose.Types.ObjectId.isValid(id)) {
+            return req.status(404).json({error: "Not valid ID"})
+        }
+        const inventItem = await InventItem.findOne({group: id})
+
+        // check if inventory item doesn't exist
+        /*
+        if(!inventItem) {
+            return req.status(404).json({error: "Could not find inventory item"})
+        }*/
+
+        res.status(200).json(inventItem)
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
+}
+
 module.exports = {
     GetAllInventory,
     GetInventItem,
     CreateInventItem,
     DeleteInventItem,
-    UpdateInventItem
+    UpdateInventItem,
+    GetInventItemFromGroupID
 }
