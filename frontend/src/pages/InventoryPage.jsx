@@ -54,13 +54,13 @@ const InventoryPage = () => {
                     <table className="inventory-table">
                         <thead>
                             <tr>
-                                <th>_id</th>
-                                <th>title</th>
-                                <th>description</th>
-                                <th>group</th>
-                                <th>status</th>
-                                <th>updatedAt</th>
-                                <th>action</th>
+                                <th>ID</th>
+                                <th>Title</th>
+                                <th>Description</th>
+                                <th>Group</th>
+                                <th>Status</th>
+                                <th>Last Updated</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         {inventory && inventory.map((inventItem) => (

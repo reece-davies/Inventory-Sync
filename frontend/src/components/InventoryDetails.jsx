@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+// date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+
 const InventoryDetails = ({ inventory }) => {
     const [groupName, setGroupName] = useState(''); // State to store the fetched group name
     const [error, setError] = useState(null); // State to store any errors
@@ -59,7 +62,7 @@ const InventoryDetails = ({ inventory }) => {
                 <td>{inventory.description}</td>
                 <td>{groupName}</td>
                 <td>{inventory.status}</td>
-                <td>{inventory.updatedAt}</td>
+                <td>{formatDistanceToNow(new Date(inventory.updatedAt), { addSuffix: true})}</td>
                 <td>
                     <button className="button-default">
                         <Link className="button-link" to={`/inventory/edit/${inventory._id}`}>Edit</Link>

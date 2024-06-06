@@ -49,10 +49,10 @@ const GroupsPage = () => {
                     <table className="inventory-table">
                         <thead>
                             <tr>
-                                <th>_id</th>
-                                <th>group_name</th>
-                                <th>notes</th>
-                                <th>action</th>
+                                <th>ID</th>
+                                <th>Group Name</th>
+                                <th>Notes</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         {group && group.map((groupItem) => (
