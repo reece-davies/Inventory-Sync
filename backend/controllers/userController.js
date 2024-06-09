@@ -9,7 +9,18 @@ const CreateToken = (_id) => {
 
 // login user
 const LoginUser = async (req, res) => {
-    res.json({mssg: "Login user"})
+    const {email_address, password} = req.body
+    
+    try {
+        const user = await User.login(email_address, password)
+
+        // create token
+        const token = CreateToken(user._id)
+
+        res.status(200).json({email_address, token})
+    } catch (error) {
+        res.status(400).json({error: error.message})
+    }
 }
 
 // signup user
