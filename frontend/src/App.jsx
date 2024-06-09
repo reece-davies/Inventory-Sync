@@ -10,6 +10,7 @@ import AddInventoryPage from './pages/AddInventoryPage.jsx'
 import GroupsPage from './pages/GroupsPage.jsx'
 import EditGroupPage from './pages/EditGroupPage.jsx'
 import AddGroupPage from './pages/AddGroupPage.jsx'
+import SignupPage from './pages/SignupPage.jsx'
 
 function App() {
   return (
@@ -45,6 +46,10 @@ function App() {
               <Route
                 path='/groups/add/'
                 element={<AddGroupPage/>}
+              />
+              <Route
+                path='/signup'
+                element={<SignupPage/>}
               />
             </Routes>
             

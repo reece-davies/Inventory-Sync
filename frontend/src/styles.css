@@ -1,5 +1,5 @@
 /*** Index CSS ***/
- /* * { border: 1px dotted red; } */
+/*  * { border: 1px dotted red; } */
 
  :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -79,11 +79,28 @@ header .navbar-container {
   display: flex;
   align-items: center;
   gap: 2em;
-  /* justify-content: space-between; */
+   justify-content: space-between; 
+}
+
+.content {
+  display: flex;
 }
 
 .navbar-content {
   color: black;
+}
+
+.navbar-left {
+  display: flex;
+  justify-content: center;
+}
+
+.navbar-left a {
+  margin-left: 10px;
+}
+
+nav a {
+  margin-left: 10px;
 }
 
 .pages {
@@ -93,14 +110,14 @@ header .navbar-container {
   display: grid;
 }
 
-.inventory-page, .edit-inventory-page, .add-inventory-page, .groups-page, .edit-group-page, .add-group-page, .home-page {
+.inventory-page, .edit-inventory-page, .add-inventory-page, .groups-page, .edit-group-page, .add-group-page, .home-page, .signup-page {
   display: grid;
   /* ** Used when form was on same page as inventory page **
   grid-template-columns: 3fr 1fr;
   gap: 3em;  *** was 100px */
 }
 
-.create-inventory-form, .edit-inventory-form, .create-group-form, .edit-group-form {
+.create-inventory-form, .edit-inventory-form, .create-group-form, .edit-group-form, .signup-form {
   /*background-color: white;*/
 }
 

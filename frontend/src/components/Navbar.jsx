@@ -7,12 +7,17 @@ const Navbar = () => {
                 <Link to="/">
                     <h2>REECE EASE</h2>
                 </Link>
-                <Link to="/inventory/" className='navbar-content'>
-                    <h4>Inventory</h4>
-                </Link>
-                <Link to="/groups/" className='navbar-content'>
-                    <h4>Groups</h4>
-                </Link>
+                <nav>
+                    <Link to="/inventory/" className='navbar-content'>Inventory</Link>
+                    <Link to="/groups/" className='navbar-content'>Groups</Link>
+                </nav>
+                <nav>
+                    <div>
+                        <Link to="/login" className='navbar-content'>Login</Link>
+                        <Link to="/signup" className='navbar-content'>Signup</Link>
+                    </div>
+                </nav>
+                
             </div>
         </header>
     )
