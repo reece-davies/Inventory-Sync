@@ -5,7 +5,7 @@ const validator = require('validator')
 const Schema = mongoose.Schema
 
 const userSchema = new Schema({
-    email_address: {
+    email: {
         type: String,
         required: true,
         unique: true
@@ -22,14 +22,14 @@ const userSchema = new Schema({
 })
 
 // static signup method 
-userSchema.statics.signup = async function(email_address, password, username) {
+userSchema.statics.signup = async function(email, password, username) {
 
     // validation
-    if (!email_address || !password || !username) {
+    if (!email || !password || !username) {
         throw Error("All fields must be filled out")
     }
 
-    if (!validator.isEmail(email_address)) {
+    if (!validator.isEmail(email)) {
         throw Error("Email is not valid")
     }
     
@@ -37,8 +37,8 @@ userSchema.statics.signup = async function(email_address, password, username) {
         throw Error("Password not strong enough")
     } 
 
-    // duplicate check for email_address and username
-    const emailExists = await this.findOne({ email_address })
+    // duplicate check for email and username
+    const emailExists = await this.findOne({ email })
     const usernameExists = await this.findOne({ username })
 
     if (emailExists) {
@@ -52,19 +52,19 @@ userSchema.statics.signup = async function(email_address, password, username) {
     const salt = await bcrypt.genSalt(10)
     const hash = await bcrypt.hash(password, salt)
 
-    const user = await this.create({ email_address, password: hash, username })
+    const user = await this.create({ email, password: hash, username })
 
     return user
 }
 
 // static login method
-userSchema.statics.login = async function(email_address, password) {
+userSchema.statics.login = async function(email, password) {
 
-    if (!email_address || !password) {
+    if (!email || !password) {
         throw Error("All fields must be filled out")
     }
 
-    const user = await this.findOne({ email_address })
+    const user = await this.findOne({ email })
     //const usernameExists = await this.findOne({ username })
 
     if (!user) {
