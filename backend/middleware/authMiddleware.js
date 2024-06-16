@@ -7,12 +7,12 @@ module.exports.userVerification = (req, res) => {
   if (!token) {
     return res.json({ status: false })
   }
-  jwt.verify(token, process.env.SECRET, async (err, data) => {
+  jwt.verify(token, process.env.TOKEN_SECRET, async (err, data) => {
     if (err) {
      return res.json({ status: false })
     } else {
-      const user = await User.findById(data._id) // POTENTIALLY JUST ID
-      if (user) return res.json({ status: true, user: user.email })
+      const user = await User.findById(data._id)
+      if (user) return res.json({ status: true, user: user.email }) // or username? (online guide uses username)
       else return res.json({ status: false })
     }
   })
