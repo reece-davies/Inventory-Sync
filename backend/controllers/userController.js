@@ -24,7 +24,7 @@ const LoginUser = async (req, res) => {
 }
 
 // signup user
-const SignupUser = async (req, res) => {
+const SignupUser = async (req, res, next) => {
     //res.json({mssg: "Signup user"})
     const {email, password, username} = req.body
     
@@ -34,7 +34,17 @@ const SignupUser = async (req, res) => {
         // create token
         const token = CreateToken(user._id)
 
-        res.status(200).json({email, token})
+        // Assign cookie?
+        res.cookie("token", token, {
+            withCredentials: true,
+            httpOnly: false,
+          });
+          res
+            .status(201)
+            .json({ message: "User signed in successfully", success: true, user });
+          next();
+
+        //res.status(200).json({email, token}) //no longer required
     } catch (error) {
         res.status(400).json({error: error.message})
     }
