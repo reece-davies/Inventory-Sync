@@ -5,6 +5,7 @@ const mongoose = require('mongoose')
 const inventoryRoutes = require('./routes/inventoryRoutes')
 const groupRoutes = require('./routes/groupRoutes')
 const userRoutes = require('./routes/userRoutes')
+const cookieParser = require("cookie-parser");
 
 // express app
 const app = express()
@@ -16,6 +17,9 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
+
+app.use(cookieParser()); // cookies!
+
 
 // routes (test local API)
 /*

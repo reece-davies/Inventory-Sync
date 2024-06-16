@@ -5,7 +5,7 @@ const {LoginUser, SignupUser} = require('../controllers/userController')
 const { userVerification  } = require("../middleware/authMiddleware");
 
 // user token verification
-router.post("/", userVerification )
+router.post("/", userVerification)
 
 // login route
 router.post("/login", LoginUser)

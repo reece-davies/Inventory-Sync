@@ -20,13 +20,12 @@ const SignupPage = () => {
             <div className="signup-page">
 
                 <form className="signup-form" onSubmit={handleSubmit}>
-                    { /* For when we change the signup form
                     <label>Username</label> <br/>
                     <input
                         type="text"
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
-                    /> <br/> */ }
+                    /> <br/>
                     <label>Email</label> <br/>
                     <input
                         type="email"

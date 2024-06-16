@@ -35,6 +35,7 @@ const SignupUser = async (req, res, next) => {
         const token = CreateToken(user._id)
 
         // Assign cookie?
+        
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: false,
