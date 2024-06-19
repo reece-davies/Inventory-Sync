@@ -1,5 +1,5 @@
 import {useEffect, useState  } from 'react'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 const SignupPage = () => {
     const [email, setEmail] = useState('')
@@ -7,11 +7,44 @@ const SignupPage = () => {
     const [password, setPassword] = useState('')
     const [checkPassword, setcheckPassword] = useState('')
     const [error, setError] = useState('')
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault()
 
         console.log(email, password)
+
+        const user = {email, password, username}
+        console.log(user)
+
+
+        
+        const response = await fetch('/api/user/signup', {
+            method: 'POST',
+            body: JSON.stringify(user),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        console.log(response)
+        const json = await response.json()
+
+        if(!response.ok) {
+            setError(json.error)
+        }
+        if(response.ok) {
+            setError(null)
+            console.log("Signed up - ", json)
+
+            // Alert user
+            alert("Signed up")
+            
+            // Navigate back to groups
+            navigate("/inventory/")
+        }
+
+
+
     }
     
     return (
