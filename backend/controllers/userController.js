@@ -35,6 +35,21 @@ const LoginUser = async (req, res, next) => {
 const SignupUser = async (req, res, next) => {
     //res.json({mssg: "Signup user"})
     const {email, password, username} = req.body
+
+    let emptyFields = []
+
+    if(!email) {
+        emptyFields.push('email')
+    }
+    if(!password) {
+        emptyFields.push('password')
+    }
+    if(!username) {
+        emptyFields.push('username')
+    }
+    if(emptyFields.length > 0) {
+        return res.status(400).json({ error: "Please fill in all the required fields", emptyFields})
+    }
     
     try {
         const user = await User.signup(email, password, username)

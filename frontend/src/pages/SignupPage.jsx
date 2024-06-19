@@ -6,6 +6,7 @@ const SignupPage = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
     const [checkPassword, setcheckPassword] = useState('')
+    const [emptyFields, setEmptyFields] = useState([])
     const [error, setError] = useState('')
     const navigate = useNavigate()
 
@@ -17,8 +18,10 @@ const SignupPage = () => {
         const user = {email, password, username}
         console.log(user)
 
+        if (password !== checkPassword) {
+            return setError("Passwords do not match")
+        }
 
-        
         const response = await fetch('/api/user/signup', {
             method: 'POST',
             body: JSON.stringify(user),
@@ -31,20 +34,18 @@ const SignupPage = () => {
 
         if(!response.ok) {
             setError(json.error)
+            setEmptyFields(json.emptyFields)
         }
         if(response.ok) {
             setError(null)
             console.log("Signed up - ", json)
 
-            // Alert user
+            // Alert user (temporary)
             alert("Signed up")
             
-            // Navigate back to groups
+            // Navigate to inventory
             navigate("/inventory/")
         }
-
-
-
     }
     
     return (
@@ -58,25 +59,29 @@ const SignupPage = () => {
                         type="text"
                         onChange={(e) => setUsername(e.target.value)}
                         value={username}
+                        className={emptyFields.includes('username') ? 'error' : ''}
                     /> <br/>
                     <label>Email</label> <br/>
                     <input
                         type="email"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
+                        className={emptyFields.includes('email') ? 'error' : ''}
                     /> <br/>
                     <label>Password</label> <br/>
                     <input
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password} 
+                        className={emptyFields.includes('password') || error.includes("Passwords do not match") ? 'error' : ''}
                     /> <br/>
-                    { /* For when we change the signup form
+                    <label>Repeat Password</label> <br/>
                     <input
                         type="password"
                         onChange={(e) => setcheckPassword(e.target.value)}
                         value={checkPassword} 
-                    /> <br/> */}
+                        className={error.includes("Passwords do not match") ? 'error' : ''}
+                    /> <br/>
                     <button>Submit</button>
                     {error && <div className="error-msg">{error}</div>}
                 </form>
