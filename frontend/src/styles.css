@@ -115,14 +115,14 @@ nav a {
   display: grid;
 }
 
-.inventory-page, .edit-inventory-page, .add-inventory-page, .groups-page, .edit-group-page, .add-group-page, .home-page, .signup-page {
+.inventory-page, .edit-inventory-page, .add-inventory-page, .groups-page, .edit-group-page, .add-group-page, .home-page, .signup-page, .login-page {
   display: grid;
   /* ** Used when form was on same page as inventory page **
   grid-template-columns: 3fr 1fr;
   gap: 3em;  *** was 100px */
 }
 
-.create-inventory-form, .edit-inventory-form, .create-group-form, .edit-group-form, .signup-form {
+.create-inventory-form, .edit-inventory-form, .create-group-form, .edit-group-form, .signup-form, .login-form {
   /*background-color: white;*/
 }
 

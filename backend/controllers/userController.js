@@ -10,6 +10,18 @@ const CreateToken = (_id) => {
 // login user
 const LoginUser = async (req, res, next) => {
     const {email, password} = req.body
+
+    let emptyFields = []
+
+    if(!email) {
+        emptyFields.push('email')
+    }
+    if(!password) {
+        emptyFields.push('password')
+    }
+    if(emptyFields.length > 0) {
+        return res.status(400).json({ error: "Please fill in all the required fields", emptyFields})
+    }
     
     try {
         const user = await User.login(email, password)

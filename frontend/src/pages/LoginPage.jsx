@@ -1,11 +1,9 @@
 import {useEffect, useState  } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-const SignupPage = () => {
+const LoginPage = () => {
     const [email, setEmail] = useState('')
-    const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
-    const [checkPassword, setcheckPassword] = useState('')
     const [emptyFields, setEmptyFields] = useState([])
     const [error, setError] = useState('')
     const navigate = useNavigate()
@@ -15,14 +13,10 @@ const SignupPage = () => {
 
         console.log(email, password)
 
-        const user = {email, password, username}
+        const user = {email, password}
         console.log(user)
 
-        if (password !== checkPassword) {
-            return setError("Passwords do not match")
-        }
-
-        const response = await fetch('/api/user/signup', {
+        const response = await fetch('/api/user/login', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
@@ -34,17 +28,17 @@ const SignupPage = () => {
 
         if(!response.ok) {
             setError(json.error)
-            
+
             if(json.emptyFields) {
                 setEmptyFields(json.emptyFields)
             }
         }
         if(response.ok) {
             setError(null)
-            console.log("Signed up - ", json)
+            console.log("Logged in - ", json)
 
             // Alert user (temporary)
-            alert("Signed up")
+            alert("Logged in")
             
             // Navigate to inventory
             navigate("/inventory/")
@@ -53,17 +47,10 @@ const SignupPage = () => {
     
     return (
         <div>
-            <h2>Sign Up</h2>
-            <div className="signup-page">
+            <h2>Log In</h2>
+            <div className="login-page">
 
-                <form className="signup-form" onSubmit={handleSubmit}>
-                    <label>Username</label> <br/>
-                    <input
-                        type="text"
-                        onChange={(e) => setUsername(e.target.value)}
-                        value={username}
-                        className={emptyFields.includes('username') ? 'error' : ''}
-                    /> <br/>
+                <form className="login-form" onSubmit={handleSubmit}>
                     <label>Email</label> <br/>
                     <input
                         type="email"
@@ -76,14 +63,7 @@ const SignupPage = () => {
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password} 
-                        className={emptyFields.includes('password') || error.includes("Passwords do not match") ? 'error' : ''}
-                    /> <br/>
-                    <label>Repeat Password</label> <br/>
-                    <input
-                        type="password"
-                        onChange={(e) => setcheckPassword(e.target.value)}
-                        value={checkPassword} 
-                        className={emptyFields.includes('password') || error.includes("Passwords do not match") ? 'error' : ''}
+                        className={emptyFields.includes('password') ? 'error' : ''}
                     /> <br/>
                     <button>Submit</button>
                     {error && <div className="error-msg">{error}</div>}
@@ -93,4 +73,4 @@ const SignupPage = () => {
     )
 }
 
-export default SignupPage
+export default LoginPage

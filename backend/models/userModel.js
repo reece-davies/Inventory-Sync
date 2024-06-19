@@ -59,10 +59,11 @@ userSchema.statics.signup = async function(email, password, username) {
 
 // static login method
 userSchema.statics.login = async function(email, password) {
-
+    
+    /* Not necessary due to emptyFields functionality
     if (!email || !password) {
         throw Error("All fields must be filled out")
-    }
+    }*/
 
     const user = await this.findOne({ email })
     //const usernameExists = await this.findOne({ username })

@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import './styles.css'
 
-// pages and components
+// components
 import Navbar from './components/Navbar.jsx'
+
+// pages
 import HomePage from './pages/HomePage.jsx'
 import InventoryPage from './pages/InventoryPage.jsx'
 import EditInventoryPage from './pages/EditInventoryPage.jsx'
@@ -11,6 +13,7 @@ import GroupsPage from './pages/GroupsPage.jsx'
 import EditGroupPage from './pages/EditGroupPage.jsx'
 import AddGroupPage from './pages/AddGroupPage.jsx'
 import SignupPage from './pages/SignupPage.jsx'
+import LoginPage from './pages/LoginPage.jsx'
 
 function App() {
   return (
@@ -50,6 +53,10 @@ function App() {
               <Route
                 path='/signup'
                 element={<SignupPage/>}
+              />
+              <Route
+                path='/login'
+                element={<LoginPage/>}
               />
             </Routes>
             
