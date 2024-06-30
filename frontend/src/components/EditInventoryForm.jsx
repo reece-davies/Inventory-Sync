@@ -73,7 +73,7 @@ const EditInventoryForm = ({ inventory, userId }) => {
     }
     return (
         <form className="edit-inventory-form" onSubmit={handSubmit}>
-            <label>Title for {userId}</label> <br/>
+            <label>Title</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
