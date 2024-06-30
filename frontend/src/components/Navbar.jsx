@@ -1,6 +1,13 @@
 import { Link } from 'react-router-dom'
+import {useEffect } from 'react'
+import { VerifyTokenHook } from '../hooks/VerifyTokenHook.jsx';
 
 const Navbar = () => {
+    const {VerifyToken, userId} = VerifyTokenHook()
+    
+    useEffect(() => {
+        VerifyToken()
+    }, [])
     return (
         <header>
             <div className="navbar-container">
@@ -14,10 +21,18 @@ const Navbar = () => {
                     </nav>
                 </div>
                 <div className='navbar-child'>
-                    <nav>
+                    {userId && (
+                        <nav>
+                        <span>{userId}</span>
+                        <button>Logout</button>
+                    </nav>
+                    )}
+                    {!userId && (
+                        <nav>
                         <Link to="/login" className='navbar-content'>Login</Link>
                         <Link to="/signup" className='navbar-content'>Signup</Link>
                     </nav>
+                    )}
                 </div>
             </div>
         </header>
