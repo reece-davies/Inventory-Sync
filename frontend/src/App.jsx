@@ -1,6 +1,9 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './styles.css'
 
+// Cookies & JWT guide
+import Cookies from 'universal-cookie';
+
 // components
 import Navbar from './components/Navbar.jsx'
 
@@ -14,10 +17,6 @@ import EditGroupPage from './pages/EditGroupPage.jsx'
 import AddGroupPage from './pages/AddGroupPage.jsx'
 import SignupPage from './pages/SignupPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
-
-
-// Cookies & JWT guide
-import Cookies from 'universal-cookie';
 
 function App() {
   //const [cookies, setCookie, removeCookie] = useCookies([]); // react-cookie method
@@ -62,11 +61,11 @@ function App() {
               />
               <Route
                 path='/signup'
-                element={<SignupPage/>}
+                element={!userToken ? <SignupPage/> : <Navigate to='/'/>}
               />
               <Route
                 path='/login'
-                element={<LoginPage/>}
+                element={!userToken ? <LoginPage/> : <Navigate to='/'/>}
               />
             </Routes>
             
