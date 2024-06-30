@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from 'react-router-dom'
 
-const InventoryForm = () => {
+const InventoryForm = ({userId}) => {
     const initialState = {
         _id: '0',
         group_name: 'select_group',

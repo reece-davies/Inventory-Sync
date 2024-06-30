@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom'
 
 // components
 import EditGroupForm from '../components/EditGroupForm.jsx'
+import { VerifyTokenHook } from '../hooks/VerifyTokenHook.jsx';
 
 const EditGroupPage = () => {
     const initialState = {
@@ -12,6 +13,7 @@ const EditGroupPage = () => {
       }
     const { id } = useParams();
     const [group, setGroup] = useState(initialState)
+    const {VerifyToken, userId} = VerifyTokenHook()
 
     useEffect(() => {
         const fetchGroup = async () => {
@@ -37,10 +39,13 @@ const EditGroupPage = () => {
             }
         }
 
-        
+        VerifyToken()
+
         const interval = setInterval(() => {
             fetchGroup()
         }, 1000);
+
+
 
         //Clearing the interval
         return () => clearInterval(interval);
@@ -48,9 +53,9 @@ const EditGroupPage = () => {
     }, [])
     return (
         <div>
-            <h2>Edit Group</h2>
+            <h2>Edit Group for {userId}</h2>
             <div className="edit-group-page">
-                <EditGroupForm key={group._id} group={group}/>
+                <EditGroupForm key={group._id} group={group} userId={userId}/>
             </div>
         </div>
     )

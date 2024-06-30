@@ -35,12 +35,12 @@ const InventoryPage = () => {
             }
         }
 
+        //verifyTokenLocal()
+        VerifyToken()
+
         const interval = setInterval(() => {
             fetchInventory()
         }, 1000);
-
-        //verifyTokenLocal()
-        VerifyToken()
 
         //Clearing the interval
         return () => clearInterval(interval);

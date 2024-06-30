@@ -32,11 +32,11 @@ const GroupsPage = () => {
             }
         }
 
+        VerifyToken()
+
         const interval = setInterval(() => {
             fetchGroups()
         }, 1000);
-
-        VerifyToken()
 
         //Clearing the interval
         return () => clearInterval(interval);

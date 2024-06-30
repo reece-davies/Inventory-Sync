@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
 
-const GroupForm = () => {
+const GroupForm = ({userId}) => {
     const [group_name, setGroupName] = useState('')
     const [notes, setNotes] = useState('')
     const [error, setError] = useState(null)
@@ -41,8 +41,6 @@ const GroupForm = () => {
             // Navigate back to groups
             navigate("/groups/")
         }
-
-
     }
     return (
         <form className="create-group-form" onSubmit={handleSubmit}>

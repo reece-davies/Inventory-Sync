@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 
-const EditInventoryForm = ({ inventory }) => {
+const EditInventoryForm = ({ inventory, userId }) => {
     const [title, setTitle] = useState(inventory.title)
     const [description, setDescription] = useState(inventory.description)
     const [selectedGroupId, setSelectedGroupId] = useState(inventory.group)
@@ -73,7 +73,7 @@ const EditInventoryForm = ({ inventory }) => {
     }
     return (
         <form className="edit-inventory-form" onSubmit={handSubmit}>
-            <label>Title</label> <br/>
+            <label>Title for {userId}</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}

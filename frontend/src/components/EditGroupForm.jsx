@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
-const EditGroupForm = ({ group }) => {
+const EditGroupForm = ({ group, userId}) => {
     const [group_name, setGroupName] = useState(group.group_name)
     const [notes, setNotes] = useState(group.notes)
     const [error, setError] = useState(null)
