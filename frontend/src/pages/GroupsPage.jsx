@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom'
 
 // components
 import GroupDetails from '../components/GroupDetails.jsx'
+import { VerifyTokenHook } from '../hooks/VerifyTokenHook.jsx';
 
 const GroupsPage = () => {
-
     const [group, setGroup] = useState(null)
+    const {VerifyToken, userId} = VerifyTokenHook()
 
     useEffect(() => {
         const fetchGroups = async () => {
@@ -35,13 +36,15 @@ const GroupsPage = () => {
             fetchGroups()
         }, 1000);
 
+        VerifyToken()
+
         //Clearing the interval
         return () => clearInterval(interval);
 
     }, [])
     return (
         <div>
-            <h2>Groups</h2>
+            <h2>Groups for {userId}</h2>
             <button className="button-default"><Link className="button-link" to={'/groups/add/'}>Add Group</Link></button>
             <div className="groups-page">
                 {/*<h2>Home page</h2>*/}

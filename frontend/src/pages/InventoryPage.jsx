@@ -1,25 +1,16 @@
 import {useEffect, useState  } from 'react'
 import { Link } from 'react-router-dom'
-
 import { useNavigate } from "react-router-dom";
-
-// Cookies & JWT guide
-import Cookies from 'universal-cookie';
-import { jwtDecode } from "jwt-decode";
 
 // components
 import InventoryDetails from '../components/InventoryDetails.jsx'
+import { VerifyTokenHook } from '../hooks/VerifyTokenHook.jsx';
 
 const InventoryPage = () => {
-
     const [inventory, setInventory] = useState(null)
-    
+    // external
     const navigate = useNavigate()
-
-    // From cookies guide
-    const cookies = new Cookies()
-    const userToken = cookies.get('token');
-    const [userId, setUserId] = useState('')
+    const {VerifyToken, userId} = VerifyTokenHook()
 
     useEffect(() => {
         const fetchInventory = async () => {
@@ -38,42 +29,25 @@ const InventoryPage = () => {
                 
                 const json = await response.json()
                 console.log("JSON = ", json)
-                //console.log("Inventory (2) = ", inventory)
                 setInventory(json)
-                //console.log("Inventory (3) = ", inventory)
-                console.log("UID (1) = ", userId)
             } catch (error) {
                 console.error('Error fetching inventory:', error)
             }
-        }
-
-        const verifyToken = async () => {
-
-            console.log("login token = ", userToken)
-            // Check if user token exists. Was if (!cookies.token)
-            if (!userToken) {
-                console.log("NO COOKIE, NAVIGATE AWAY")
-                navigate("/login");
-            }
-           
-            const decoded = jwtDecode(userToken)
-            console.log("Decoded jwt = ", decoded)
-            setUserId(decoded._id)
-            console.log("UID (0) = ", userId)
-            
         }
 
         const interval = setInterval(() => {
             fetchInventory()
         }, 1000);
 
-        verifyToken()
+        //verifyTokenLocal()
+        VerifyToken()
+
         //Clearing the interval
         return () => clearInterval(interval);
 
         //fetchInventory()
         
-    }, [cookies, navigate])
+    }, [navigate])
     return (
         <div>
             <h2>Inventory for {userId}</h2>
