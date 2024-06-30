@@ -18,7 +18,6 @@ import LoginPage from './pages/LoginPage.jsx'
 
 // Cookies & JWT guide
 import Cookies from 'universal-cookie';
-import { jwtDecode } from "jwt-decode";
 
 function App() {
   //const [cookies, setCookie, removeCookie] = useCookies([]); // react-cookie method
@@ -26,7 +25,6 @@ function App() {
   const userToken = cookies.get('token');
   //console.log("Cookie token = ", cookies.token) // react-cookie method
   //console.log("userTokenn = ", userToken)
-
 
   return (
       <div className='App'>
