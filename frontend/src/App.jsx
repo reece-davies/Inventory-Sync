@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import './styles.css'
 
 // components
@@ -15,7 +15,19 @@ import AddGroupPage from './pages/AddGroupPage.jsx'
 import SignupPage from './pages/SignupPage.jsx'
 import LoginPage from './pages/LoginPage.jsx'
 
+
+// Cookies & JWT guide
+import Cookies from 'universal-cookie';
+import { jwtDecode } from "jwt-decode";
+
 function App() {
+  //const [cookies, setCookie, removeCookie] = useCookies([]); // react-cookie method
+  const cookies = new Cookies()
+  const userToken = cookies.get('token');
+  //console.log("Cookie token = ", cookies.token) // react-cookie method
+  //console.log("userTokenn = ", userToken)
+
+
   return (
       <div className='App'>
         <BrowserRouter>
@@ -28,27 +40,27 @@ function App() {
               />
               <Route
                 path='/inventory/'
-                element={<InventoryPage/>}
+                element={userToken ? <InventoryPage/> : <Navigate to='/login'/>}
               />
               <Route
                 path='/inventory/edit/:id'
-                element={<EditInventoryPage/>}
+                element={userToken ? <EditInventoryPage/> : <Navigate to='/login'/>}
               />
               <Route
                 path='/inventory/add/'
-                element={<AddInventoryPage/>}
+                element={userToken ? <AddInventoryPage/> : <Navigate to='/login'/>}
               />
               <Route
                 path='/groups/'
-                element={<GroupsPage/>}
+                element={userToken ? <GroupsPage/> : <Navigate to='/login'/>}
               />
               <Route
                 path='/groups/edit/:id'
-                element={<EditGroupPage/>}
+                element={userToken ? <EditGroupPage/> : <Navigate to='/login'/>}
               />
               <Route
                 path='/groups/add/'
-                element={<AddGroupPage/>}
+                element={userToken ? <AddGroupPage/> : <Navigate to='/login'/>}
               />
               <Route
                 path='/signup'
