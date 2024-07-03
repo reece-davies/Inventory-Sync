@@ -55,7 +55,7 @@ const Navbar = () => {
                 <div className='navbar-child'>
                     {userId && (
                         <nav>
-                        <span className='user-email'>{user}</span>
+                        <span className='user-username'>{user}</span>
                         <button>Logout</button>
                         </nav>
                     )}
