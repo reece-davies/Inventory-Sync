@@ -108,6 +108,10 @@ nav a {
   align-items: center; /* Ensures the text within the links is centered vertically */
 }
 
+.user-email {
+  margin: 0 1em; /* Adjust the value as necessary */
+}
+
 .pages {
   /*max-width: 1400px;*/
   padding: 1em;

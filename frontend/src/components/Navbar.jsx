@@ -1,12 +1,44 @@
 import { Link } from 'react-router-dom'
-import {useEffect } from 'react'
+import {useEffect, useState } from 'react'
 import { VerifyTokenHook } from '../hooks/VerifyTokenHook.jsx';
 
 const Navbar = () => {
     const {VerifyToken, userId} = VerifyTokenHook()
+    const [user, setUser] = useState('')
+
+    const getUser = async () => {
+        try {
+            const response = await fetch('/api/user', {
+                method: 'POST',
+                body: JSON.stringify(VerifyToken()),
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                }
+            })
+
+            if (!response.ok) {
+                throw new Error('Failed to fetch user')
+            }
+            
+            const contentType = response.headers.get('content-type')
+            if (!contentType || !contentType.includes('application/json')) {
+                throw new Error('Invalid response format - expected JSON')
+            }
+            
+            const json = await response.json()
+            console.log("User verification = ", json)
+            setUser(json.user)
+        } catch (error) {
+            console.error('Error fetching user:', error)
+            //setError(error.message)
+        }
+        
+    }
     
     useEffect(() => {
-        VerifyToken()
+        //VerifyToken()
+        getUser()
     }, [])
     return (
         <header>
@@ -23,9 +55,9 @@ const Navbar = () => {
                 <div className='navbar-child'>
                     {userId && (
                         <nav>
-                        <span>{userId}</span>
+                        <span className='user-email'>{user}</span>
                         <button>Logout</button>
-                    </nav>
+                        </nav>
                     )}
                     {!userId && (
                         <nav>
