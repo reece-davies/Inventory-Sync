@@ -47,7 +47,7 @@ const InventoryPage = () => {
 
         //fetchInventory()
         
-    }, [navigate])
+    }, [userId])
     return (
         <div>
             <h2>Inventory for {userId}</h2>

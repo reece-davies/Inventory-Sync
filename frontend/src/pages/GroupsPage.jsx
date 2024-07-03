@@ -41,7 +41,7 @@ const GroupsPage = () => {
         //Clearing the interval
         return () => clearInterval(interval);
 
-    }, [])
+    }, [userId])
     return (
         <div>
             <h2>Groups for {userId}</h2>
