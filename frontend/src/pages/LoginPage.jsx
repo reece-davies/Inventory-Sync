@@ -42,6 +42,7 @@ const LoginPage = () => {
             
             // Navigate to inventory
             navigate("/inventory/")
+            window.location.reload();
         }
     }
     

@@ -24,7 +24,7 @@ export const LogoutHook = () => {
             alert("Signed out")
                 
             // Navigate to inventory
-            navigate("/")
+            navigate("/login")
             window.location.reload();
         } catch (error) {
             console.error("Logout error occured", error);

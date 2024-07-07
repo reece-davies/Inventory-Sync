@@ -48,6 +48,7 @@ const SignupPage = () => {
             
             // Navigate to inventory
             navigate("/inventory/")
+            window.location.reload();
         }
     }
     
