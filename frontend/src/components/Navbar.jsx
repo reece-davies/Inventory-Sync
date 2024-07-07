@@ -1,13 +1,24 @@
 import { Link } from 'react-router-dom'
 import {useEffect, useState } from 'react'
+import Cookies from 'universal-cookie';
 import { VerifyTokenHook } from '../hooks/VerifyTokenHook.jsx';
+import { LogoutHook } from '../hooks/LogoutHook.jsx';
 
 const Navbar = () => {
     const {VerifyToken, userId} = VerifyTokenHook()
+    const {Logout} = LogoutHook()
     const [user, setUser] = useState('')
+
+    const cookies = new Cookies()
 
     const getUser = async () => {
         try {
+            const tokenData = VerifyToken();
+            if (!tokenData) {
+                console.log("Invalid or no token, skipping user fetch");
+                return;  // Exit if tokenData is null
+            }
+            
             const response = await fetch('/api/user', {
                 method: 'POST',
                 body: JSON.stringify(VerifyToken()),
@@ -33,13 +44,17 @@ const Navbar = () => {
             console.error('Error fetching user:', error)
             //setError(error.message)
         }
-        
+    }
+
+    const handleLogout = async () => {
+        // Call LogoutHook
+        Logout()
     }
     
     useEffect(() => {
         //VerifyToken()
         getUser()
-    }, [])
+    }, [cookies])
     return (
         <header>
             <div className="navbar-container">
@@ -56,7 +71,7 @@ const Navbar = () => {
                     {userId && (
                         <nav>
                         <span className='user-username'>{user}</span>
-                        <button>Logout</button>
+                        <button onClick={handleLogout}>Logout</button>
                         </nav>
                     )}
                     {!userId && (
