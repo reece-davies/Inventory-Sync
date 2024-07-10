@@ -60,7 +60,7 @@ const Navbar = () => {
             <div className="navbar-container">
                 <div className='navbar-child'>
                     <Link to="/">
-                        <h2>REECE EASE</h2>
+                        <h2>Inventory-Sync</h2>
                     </Link>
                     <nav>
                         <Link to="/inventory/" className='navbar-content'>Inventory</Link>
