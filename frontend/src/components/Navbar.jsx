@@ -39,7 +39,7 @@ const Navbar = () => {
             
             const json = await response.json()
             console.log("User verification = ", json)
-            setUser(json.user)
+            setUser(json.username)
         } catch (error) {
             console.error('Error fetching user:', error)
             //setError(error.message)

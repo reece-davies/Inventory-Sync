@@ -4,7 +4,11 @@ const mongoose = require('mongoose')
 // get all groups
 const GetAllGroups = async (req, res) => {
     //res.json({mssg: "GET all groups"})
+
+    //const user_id = req.user_id;
+    
     try {
+        //const group = await Group.find({user_id}).sort({createdAt: +1})
         const group = await Group.find({}).sort({createdAt: +1})
         res.status(200).json(group)
     } catch (error) {
@@ -38,13 +42,13 @@ const GetGroup = async (req, res) => {
 // create a new group
 const CreateGroup = async (req, res) => {
     //res.json({mssg: "POST a new group"})
-    const {group_name, notes} = req.body
+    const {group_name, notes, user_id} = req.body
 
-    let emptyNameField = false;
+    //let emptyNameField = false;
 
     // doc to db
     try {
-        const group = await Group.create({group_name, notes})
+        const group = await Group.create({group_name, notes, user_id})
         res.status(200).json(group)
     } catch (error) {
         res.status(400).json({error: error.message})

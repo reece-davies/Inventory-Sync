@@ -11,7 +11,7 @@ const GroupForm = ({userId}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const group = {group_name, notes}
+        const group = {group_name, notes, user_id: userId}
 
         if (group_name === '') {
             setEmptyNameField(true)
