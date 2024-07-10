@@ -12,13 +12,12 @@ const app = express()
 
 // middleware
 app.use(express.json()) // prepare us for later (use of middleware)
+app.use(cookieParser()); // cookies!
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
-
-app.use(cookieParser()); // cookies!
 
 
 // routes (test local API)
@@ -34,16 +33,31 @@ app.use('/api/groups', groupRoutes)
 app.use('/api/user', userRoutes)
 
 // connnect to db
-mongoose.connect(process.env.MONGO_URI)
-.then(() => {
-    // listen for requests
-    app.listen(process.env.PORT, () => {
-    console.log("connected to db & listening on port 4000")
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
 })
+.then(() => {
+    console.log("Connected to MongoDB");
+
+    // Start server
+    app.listen(process.env.PORT, () => {
+        console.log(`Server is running on port ${process.env.PORT}`);
+    });
 })
 .catch((error) => {
-    console.log(error)
-})
+    console.error("Failed to connect to MongoDB:", error);
+    process.exit(1); // Exit process with failure
+});
+
+
+
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
 
 
 //process.env
