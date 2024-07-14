@@ -44,7 +44,7 @@ const InventoryForm = ({userId}) => {
     const handleSubmit = async (e) => {
         e.preventDefault()
 
-        const inventory = {title, description, group: selectedGroupId, status}
+        const inventory = {title, description, group: selectedGroupId, status, user_id: userId}
 
         /*if (title === '') {
             return setError("Title is required")

@@ -4,9 +4,11 @@ const mongoose = require('mongoose')
 // get all inventory items
 const GetAllInventory = async (req, res) => {
     //res.json({mssg: "GET all inventory items"})
+    const user_id = req.user._id
+
     try {
-        const inventItem = await InventItem.find({}).sort({createdAt: +1})
-        res.status(200).json(inventItem)
+        const inventory = await InventItem.find({user_id}).sort({createdAt: +1})
+        res.status(200).json(inventory)
     } catch (error) {
         res.status(400).json({error: error.message})
     }
@@ -38,7 +40,7 @@ const GetInventItem = async (req, res) => {
 // create a new inventory item
 const CreateInventItem = async (req, res) => {
     //res.json({mssg: "POST a new inventory item"})
-    const {title, description, group, status} = req.body
+    const {title, description, group, status, user_id} = req.body
 
     let emptyFields = []
 
@@ -57,7 +59,7 @@ const CreateInventItem = async (req, res) => {
 
     // doc to db
     try {
-        const inventItem = await InventItem.create({title, description, group, status})
+        const inventItem = await InventItem.create({title, description, group, status, user_id})
         res.status(200).json(inventItem)
     } catch (error) {
         res.status(400).json({error: error.message})
