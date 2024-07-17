@@ -1,7 +1,10 @@
 import { Link } from 'react-router-dom'
 import {useState, setState} from 'react'
 
-const GroupDetails = ({ group }) => {
+// date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+
+const GroupDetails = ({ group, index }) => {
 
     const [error, setError] = useState('')
 
@@ -75,9 +78,10 @@ const GroupDetails = ({ group }) => {
     return (
         <tbody>
              <tr key={group._id}>
-                    <td>{group._id}</td>
+                    <td>{index}</td>
                     <td>{group.group_name}</td>
                     <td>{group.notes}</td>
+                    <td>{ formatDistanceToNow(new Date(group.updatedAt), { addSuffix: true}) }</td>
                     <td><button className="button-default"><Link className="button-link" to={`/groups/edit/${group._id}`}>Edit</Link></button><button className="button-default" onClick={handleDelete}>Delete</button></td>
                 </tr>
         </tbody>

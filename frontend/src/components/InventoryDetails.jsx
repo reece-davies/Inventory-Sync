@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
-const InventoryDetails = ({ inventory }) => {
+const InventoryDetails = ({ inventory, index }) => {
     const [groupName, setGroupName] = useState(''); // State to store the fetched group name
     const [error, setError] = useState(null); // State to store any errors
 
@@ -57,7 +57,7 @@ const InventoryDetails = ({ inventory }) => {
     return (
         <tbody>
             <tr key={inventory._id}>
-                <td>{inventory._id}</td>
+                <td>{index}</td>
                 <td>{inventory.title}</td>
                 <td>{inventory.description}</td>
                 <td>{groupName}</td>

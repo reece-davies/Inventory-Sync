@@ -52,14 +52,15 @@ const GroupsPage = () => {
                     <table className="inventory-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>#</th>
                                 <th>Group Name</th>
                                 <th>Notes</th>
+                                <th>Last Updated</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        {group && group.map((groupItem) => (
-                            <GroupDetails key={groupItem._id} group={groupItem} />
+                        {group && group.map((groupItem, index) => (
+                            <GroupDetails key={groupItem._id} group={groupItem} index={index + 1} />
                         ))}
                     </table>
                 </div>

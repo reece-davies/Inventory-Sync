@@ -58,7 +58,7 @@ const InventoryPage = () => {
                     <table className="inventory-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>#</th>
                                 <th>Title</th>
                                 <th>Description</th>
                                 <th>Group</th>
@@ -67,8 +67,8 @@ const InventoryPage = () => {
                                 <th>Action</th>
                             </tr>
                         </thead>
-                        {inventory && inventory.map((inventItem) => (
-                            <InventoryDetails key={inventItem._id} inventory={inventItem} />
+                        {inventory && inventory.map((inventItem, index) => (
+                            <InventoryDetails key={inventItem._id} inventory={inventItem} index={index + 1} />
                         ))}
                     </table>
                 </div>
