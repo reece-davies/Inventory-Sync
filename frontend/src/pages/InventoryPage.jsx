@@ -28,7 +28,7 @@ const InventoryPage = () => {
                 }
                 
                 const json = await response.json()
-                console.log("JSON = ", json)
+                console.log("Inventory JSON = ", json)
                 setInventory(json)
             } catch (error) {
                 console.error('Error fetching inventory:', error)

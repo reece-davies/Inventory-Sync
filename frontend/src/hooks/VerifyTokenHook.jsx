@@ -18,7 +18,7 @@ export const VerifyTokenHook = () => {
             }
 
             const decoded = jwtDecode(userToken);
-            console.log("Decoded JWT = ", decoded);
+            //console.log("Decoded JWT = ", decoded);
             setUserId(decoded._id);
             return decoded;
         } catch (error) {
@@ -26,16 +26,6 @@ export const VerifyTokenHook = () => {
             return null;  // Return null if token is invalid
         }
 
-        // Check if user token exists. Was if (!cookies.token)
-        /*if (!userToken) {
-            console.log("NO COOKIE, NAVIGATE AWAY")
-            navigate("/login");
-        }*/
-        
-        /*    
-        const decoded = jwtDecode(userToken)
-        console.log("Decoded JWT = ", decoded)
-        setUserId(decoded._id) */
     }
 
     return {VerifyToken, userId};
