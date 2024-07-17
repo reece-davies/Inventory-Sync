@@ -13,7 +13,7 @@ const AddInventoryPage = () => {
     }, [])
     return (
         <div>
-            <h2>Add Inventory Item for {userId}</h2>
+            <h2>Add Inventory Item</h2>
             <div className="add-inventory-page">
                 <AddInventoryForm userId={userId}/>
             </div>

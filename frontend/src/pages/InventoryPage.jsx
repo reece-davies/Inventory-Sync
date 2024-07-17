@@ -50,7 +50,7 @@ const InventoryPage = () => {
     }, [userId])
     return (
         <div>
-            <h2>Inventory for {userId}</h2>
+            <h2>Inventory</h2>
             <button className="button-default"><Link className="button-link" to={'/inventory/add/'}>Add Inventory Item</Link></button>
             <div className="inventory-page">
                 {/*<h2>Home page</h2>*/}

@@ -44,7 +44,7 @@ const GroupsPage = () => {
     }, [userId])
     return (
         <div>
-            <h2>Groups for {userId}</h2>
+            <h2>Groups</h2>
             <button className="button-default"><Link className="button-link" to={'/groups/add/'}>Add Group</Link></button>
             <div className="groups-page">
                 {/*<h2>Home page</h2>*/}

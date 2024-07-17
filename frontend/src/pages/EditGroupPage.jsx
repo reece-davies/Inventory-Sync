@@ -53,7 +53,7 @@ const EditGroupPage = () => {
     }, [])
     return (
         <div>
-            <h2>Edit Group for {userId}</h2>
+            <h2>Edit Group</h2>
             <div className="edit-group-page">
                 <EditGroupForm key={group._id} group={group} userId={userId}/>
             </div>

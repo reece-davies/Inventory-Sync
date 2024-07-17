@@ -13,7 +13,7 @@ const AddGroupPage = () => {
     }, [])
     return (
         <div>
-            <h2>Add Group for {userId}</h2>
+            <h2>Add Group</h2>
             <div className="add-group-page">
                 <AddGroupForm userId={userId}/>
             </div>
