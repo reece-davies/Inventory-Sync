@@ -6,6 +6,7 @@ const inventoryRoutes = require('./routes/inventoryRoutes')
 const groupRoutes = require('./routes/groupRoutes')
 const userRoutes = require('./routes/userRoutes')
 const cookieParser = require("cookie-parser");
+const cors = require("cors"); // cross origin resource sharing
 
 // express app
 const app = express()
@@ -18,6 +19,15 @@ app.use((req, res, next) => {
     console.log(req.path, req.method)
     next()
 })
+
+const corsOptions = {
+    origin: process.env.NODE_ENV === 'production' ? 'https://your-production-frontend-url.com' : 'http://localhost:4000',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // If you need to handle cookies
+}
+
+app.use(cors(corsOptions));
+
 
 
 // routes (test local API)
