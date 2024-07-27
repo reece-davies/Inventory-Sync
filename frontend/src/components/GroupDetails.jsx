@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 import {useState, setState} from 'react'
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
@@ -25,23 +27,42 @@ const GroupDetails = ({ group, index }) => {
             
             const json = await response.json()
             if (json === null) {
-                const response = await fetch('/api/groups/' + group._id, {
-                    method: 'DELETE',
-                    body: JSON.stringify(group),
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
-                })
-                console.log(response)
-                const json = await response.json()
-        
-                if (!response.ok) {
-                    setError(json.error)
-                }
-                else if (response.ok) {
-                    console.log("Group deleted", json)
-                }
-                alert("Group deleted") 
+
+                confirmAlert({
+                    title: 'Confirm to submit',
+                    message: 'Are you sure you want to delete this group?',
+                    buttons: [
+                        {
+                            label: 'Yes',
+                            onClick: async () => {
+                                // Perform DELETE request
+                                const response = await fetch('/api/groups/' + group._id, {
+                                    method: 'DELETE',
+                                    body: JSON.stringify(group),
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    }
+                                })
+                                console.log(response)
+                                const json = await response.json()
+                        
+                                if (!response.ok) {
+                                    setError(json.error)
+                                }
+                                else if (response.ok) {
+                                    console.log("Group deleted", json)
+                                }
+                                alert("Group deleted") 
+                                
+                            }
+                        },
+                        {
+                            label: 'No',
+                            onClick: () => {}
+                        }
+                    ]
+                  });
+
             }
             else {
                 setError("There are inventory items in the selected list")

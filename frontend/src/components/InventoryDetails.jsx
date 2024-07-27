@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 
 // date fns
 import formatDistanceToNow from 'date-fns/formatDistanceToNow';
@@ -9,22 +11,40 @@ const InventoryDetails = ({ inventory, index }) => {
     const [error, setError] = useState(null); // State to store any errors
 
     const handleDelete = async () => {
-        const response = await fetch('/api/inventory/' + inventory._id, {
-            method: 'DELETE',
-            body: JSON.stringify(inventory),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        console.log(response);
-        const json = await response.json();
 
-        if (!response.ok) {
-            setError(json.error);
-        } else if (response.ok) {
-            console.log("Inventory item deleted", json);
-        }
-        alert("Item deleted");
+        confirmAlert({
+            title: 'Confirm to submit',
+            message: 'Are you sure you want to delete this inventory item?',
+            buttons: [
+                {
+                    label: 'Yes',
+                    onClick: async () => {
+                        // Perform DELETE request
+                        const response = await fetch('/api/inventory/' + inventory._id, {
+                            method: 'DELETE',
+                            body: JSON.stringify(inventory),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
+                        });
+                        console.log(response);
+                        const json = await response.json();
+                
+                        if (!response.ok) {
+                            setError(json.error);
+                        } else if (response.ok) {
+                            console.log("Inventory item deleted", json);
+                        }
+                        alert("Item deleted");
+                        
+                    }
+                },
+                {
+                    label: 'No',
+                    onClick: () => {}
+                }
+            ]
+          });
     };
 
     const fetchGroupName = async () => {
