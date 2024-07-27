@@ -78,16 +78,19 @@ const EditInventoryForm = ({ inventory, userId }) => {
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
+                className="form-input"
             /> <br/>
             <label>Description</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setDescription(e.target.value)}
                 value={description} 
+                className="form-input"
             /> <br/>
             <label>Group</label> <br/>
             <select
                 value={selectedGroupId}
+                className="form-input"
                 onChange={(e) => setSelectedGroupId(e.target.value)}>
                 {groups && groups.map((groupItem) => (
                     <option key={groupItem._id} value={groupItem._id}>{groupItem.group_name} </option>
@@ -96,6 +99,7 @@ const EditInventoryForm = ({ inventory, userId }) => {
             <label>Status</label> <br/>
             <select
                 value={status}
+                className="form-input"
                 onChange={(e) => setStatus(e.target.value)}>
                     <option value='In stock'>In stock</option>
                     <option value='Assigned'>Assigned</option>

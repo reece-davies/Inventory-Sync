@@ -1,5 +1,7 @@
 import {useEffect, useState  } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import img from '../assets/user-icon.png'
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -47,7 +49,8 @@ const LoginPage = () => {
     }
     
     return (
-        <div>
+        <div class="form-container">
+            <img src={img} alt="User-icon" className="user-icon"/>
             <h2>Log In</h2>
             <div className="login-page">
 
@@ -57,17 +60,18 @@ const LoginPage = () => {
                         type="email"
                         onChange={(e) => setEmail(e.target.value)}
                         value={email}
-                        className={emptyFields.includes('email') ? 'error' : ''}
+                        className={emptyFields.includes('email') ? 'error' : 'form-input'}
                     /> <br/>
                     <label>Password</label> <br/>
                     <input
                         type="password"
                         onChange={(e) => setPassword(e.target.value)}
                         value={password} 
-                        className={emptyFields.includes('password') ? 'error' : ''}
+                        className={emptyFields.includes('password') ? 'error' : 'form-input'}
                     /> <br/>
                     <button>Submit</button>
                     {error && <div className="error-msg">{error}</div>}
+                    <br/><p>Don’t have an account? <a><Link to="/signup/">Sign Up </Link></a></p>
                 </form>
             </div>
         </div>

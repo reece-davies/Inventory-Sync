@@ -50,12 +50,14 @@ const EditGroupForm = ({ group, userId}) => {
                 type="text"
                 onChange={(e) => setGroupName(e.target.value)}
                 value={group_name}
+                className="form-input"
             /> <br/>
             <label>Notes</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setNotes(e.target.value)}
                 value={notes} 
+                className="form-input"
             /> <br/>
 
             <button>Submit</button>

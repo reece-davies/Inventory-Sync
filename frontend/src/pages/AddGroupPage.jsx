@@ -12,7 +12,7 @@ const AddGroupPage = () => {
         VerifyToken()
     }, [])
     return (
-        <div>
+        <div className="form-container">
             <h2>Add Group</h2>
             <div className="add-group-page">
                 <AddGroupForm userId={userId}/>

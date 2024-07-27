@@ -51,7 +51,7 @@ const EditInventoryPage = () => {
 
     }, [])
     return (
-        <div>
+        <div className="form-container">
             <h2>Edit Inventory Item</h2>
             <div className="edit-inventory-page">
                 <EditInventoryForm key={inventory._id} inventory={inventory} userId={userId}/>

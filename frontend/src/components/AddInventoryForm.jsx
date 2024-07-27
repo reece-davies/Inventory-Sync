@@ -85,19 +85,20 @@ const InventoryForm = ({userId}) => {
                 type="text"
                 onChange={(e) => setTitle(e.target.value)}
                 value={title}
-                className={emptyFields.includes('title') ? 'error' : ''}
+                className={emptyFields.includes('title') ? 'error' : 'form-input'}
             /> <br/>
             <label>Description</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setDescription(e.target.value)}
-                value={description} 
+                value={description}
+                className="form-input"
             /> <br/>
             <label>Group*</label> <br/>
             <select
                 value={selectedGroupId}
                 onChange={(e) => setSelectedGroupId(e.target.value)}
-                className={emptyFields.includes('group') ? 'error' : ''}>
+                className={emptyFields.includes('group') ? 'error' : 'form-input'}>
                 <option value={initialState._id}>Select Group</option>
                 {groups && groups.map((groupItem) => (
                     <option key={groupItem._id} value={groupItem._id}>{groupItem.group_name} </option>
@@ -106,7 +107,7 @@ const InventoryForm = ({userId}) => {
             <label>Status*</label> <br/>
             <select
                 onChange={(e) => setStatus(e.target.value)}
-                className={emptyFields.includes('status') ? 'error' : ''}>
+                className={emptyFields.includes('status') ? 'error' : 'form-input'}>
                     <option value={initialState.status}>Select Status</option>
                     <option value='In stock'>In stock</option>
                     <option value='Assigned'>Assigned</option>

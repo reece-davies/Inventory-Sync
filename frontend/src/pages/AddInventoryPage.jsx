@@ -12,7 +12,7 @@ const AddInventoryPage = () => {
         VerifyToken()
     }, [])
     return (
-        <div>
+        <div class="form-container">
             <h2>Add Inventory Item</h2>
             <div className="add-inventory-page">
                 <AddInventoryForm userId={userId}/>

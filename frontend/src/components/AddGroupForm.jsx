@@ -50,13 +50,14 @@ const GroupForm = ({userId}) => {
                 type="text"
                 onChange={(e) => setGroupName(e.target.value)}
                 value={group_name}
-                className={emptyNameField === true ? 'error' : ''}
+                className={emptyNameField === true ? 'error' : 'form-input'}
             /> <br/>
             <label>Notes</label> <br/>
             <input
                 type="text"
                 onChange={(e) => setNotes(e.target.value)}
-                value={notes} 
+                value={notes}
+                className="form-input"
             /> <br/>
 
             <button>Submit</button>

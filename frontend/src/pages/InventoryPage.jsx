@@ -1,6 +1,5 @@
 import {useEffect, useState  } from 'react'
 import { Link } from 'react-router-dom'
-import { useNavigate } from "react-router-dom";
 
 // components
 import InventoryDetails from '../components/InventoryDetails.jsx'
@@ -9,7 +8,6 @@ import { VerifyTokenHook } from '../hooks/VerifyTokenHook.jsx';
 const InventoryPage = () => {
     const [inventory, setInventory] = useState(null)
     // external
-    const navigate = useNavigate()
     const {VerifyToken, userId} = VerifyTokenHook()
 
     useEffect(() => {
