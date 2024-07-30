@@ -21,7 +21,7 @@ app.use((req, res, next) => {
 })
 
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production' ? 'https://inventory-sync.onrender.com' : 'http://localhost:4000',
+    origin: process.env.NODE_ENV === 'production' ? 'https://inventory-sync-frontend.onrender.com' : 'http://localhost:4000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // If you need to handle cookies
 }
