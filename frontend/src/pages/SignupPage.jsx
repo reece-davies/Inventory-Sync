@@ -91,7 +91,7 @@ const SignupPage = () => {
                     /> <br/>
                     <button>Submit</button>
                     {error && <div className="error-msg">{error}</div>}
-                    <br/><p>Already have an account? <a><Link to="/signup/">Log in</Link></a></p>
+                    <br/><p>Already have an account? <a><Link to="/login/">Log in</Link></a></p>
                 </form>
             </div>
         </div>
