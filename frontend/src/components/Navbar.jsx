@@ -53,7 +53,7 @@ const Navbar = () => {
     
     useEffect(() => {
         //VerifyToken()
-        //getUser()
+        getUser()
     }, [cookies])
     return (
         <header>
