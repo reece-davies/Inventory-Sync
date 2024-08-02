@@ -11,41 +11,60 @@ const LoginPage = () => {
     const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
-        e.preventDefault()
+        e.preventDefault();
 
-        console.log(email, password)
+    console.log(email, password);
 
-        const user = {email, password}
-        console.log(user)
+    const user = { email, password };
+    console.log(user);
 
+    try {
         const response = await fetch('/api/user/login', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
             }
-        })
-        console.log(response)
-        const json = await response.json()
+        });
 
-        if(!response.ok) {
-            setError(json.error)
+        // Log the raw response for debugging
+        console.log('Raw response:', response);
 
-            if(json.emptyFields) {
-                setEmptyFields(json.emptyFields)
-            }
+        // Check if the response is OK before parsing
+        if (!response.ok) {
+            const errorText = await response.text();
+            console.error('Error response text:', errorText);
+            throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
         }
-        if(response.ok) {
-            setError(null)
-            console.log("Logged in - ", json)
+
+        // Parse the JSON response
+        const json = await response.json();
+
+        // Log the parsed JSON for debugging
+        console.log('Parsed JSON:', json);
+
+        if (json.error) {
+            setError(json.error);
+
+            if (json.emptyFields) {
+                setEmptyFields(json.emptyFields);
+            }
+        } else {
+            setError(null);
+            console.log("Logged in - ", json);
 
             // Alert user (temporary)
-            alert("Logged in")
-            
+            alert("Logged in");
+
             // Navigate to inventory
-            navigate("/inventory/")
+            navigate("/inventory/");
             window.location.reload();
         }
+    } catch (error) {
+        // Handle any errors that occurred during fetch or parsing
+        console.error('Fetch error:', error);
+        setError('An error occurred during login.');
+    }
     }
     
     return (

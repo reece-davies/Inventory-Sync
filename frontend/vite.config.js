@@ -8,7 +8,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://inventory-sync.onrender.com', // was 'http://localhost:4000', then 'https://inventory-sync-frontend.onrender.com' (wrong) 
+        target: 'https://inventory-sync.onrender.com', // prod - was 'http://localhost:4000', then 'https://inventory-sync-frontend.onrender.com' (wrong) 
+        //target: 'http://localhost:4000', // dev
+        
         changeOrigin: true,
       },
     },
