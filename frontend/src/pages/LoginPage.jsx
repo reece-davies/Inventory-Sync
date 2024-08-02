@@ -13,58 +13,58 @@ const LoginPage = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-    console.log(email, password);
+        console.log(email, password);
 
-    const user = { email, password };
-    console.log(user);
+        const user = { email, password };
+        console.log(user);
 
-    try {
-        const response = await fetch('/api/user/login', {
-            method: 'POST',
-            body: JSON.stringify(user),
-            headers: {
-                'Content-Type': 'application/json'
+        try {
+            const response = await fetch('/api/user/login', {
+                method: 'POST',
+                body: JSON.stringify(user),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            // Log the raw response for debugging
+            console.log('Raw response:', response);
+
+            // Check if the response is OK before parsing
+            if (!response.ok) {
+                const errorText = await response.text();
+                console.error('Error response text:', errorText);
+                throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
             }
-        });
 
-        // Log the raw response for debugging
-        console.log('Raw response:', response);
+            // Parse the JSON response
+            const json = await response.json();
 
-        // Check if the response is OK before parsing
-        if (!response.ok) {
-            const errorText = await response.text();
-            console.error('Error response text:', errorText);
-            throw new Error(`HTTP error! status: ${response.status} - ${errorText}`);
-        }
+            // Log the parsed JSON for debugging
+            console.log('Parsed JSON:', json);
 
-        // Parse the JSON response
-        const json = await response.json();
+            if (json.error) {
+                setError(json.error);
 
-        // Log the parsed JSON for debugging
-        console.log('Parsed JSON:', json);
+                if (json.emptyFields) {
+                    setEmptyFields(json.emptyFields);
+                }
+            } else {
+                setError(null);
+                console.log("Logged in - ", json);
 
-        if (json.error) {
-            setError(json.error);
+                // Alert user (temporary)
+                alert("Logged in");
 
-            if (json.emptyFields) {
-                setEmptyFields(json.emptyFields);
+                // Navigate to inventory
+                navigate("/inventory/");
+                window.location.reload();
             }
-        } else {
-            setError(null);
-            console.log("Logged in - ", json);
-
-            // Alert user (temporary)
-            alert("Logged in");
-
-            // Navigate to inventory
-            navigate("/inventory/");
-            window.location.reload();
+        } catch (error) {
+            // Handle any errors that occurred during fetch or parsing
+            console.error('Fetch error:', error);
+            setError('An error occurred during login.');
         }
-    } catch (error) {
-        // Handle any errors that occurred during fetch or parsing
-        console.error('Fetch error:', error);
-        setError('An error occurred during login.');
-    }
     }
     
     return (

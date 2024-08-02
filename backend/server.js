@@ -12,13 +12,9 @@ const cors = require("cors"); // cross origin resource sharing
 const app = express()
 
 // middleware
-app.use(express.json()) // prepare us for later (use of middleware)
+app.use(express.json()); // prepare us for later (use of middleware)
 app.use(cookieParser()); // cookies!
 
-app.use((req, res, next) => {
-    console.log(req.path, req.method)
-    next()
-})
 
 const corsOptions = {
     origin: process.env.NODE_ENV === 'production' ? 'https://inventory-sync-frontend.onrender.com' : 'http://localhost:4000',
@@ -27,6 +23,20 @@ const corsOptions = {
 }
 
 app.use(cors(corsOptions));
+
+app.use((req, res, next) => {
+    console.log(req.path, req.method)
+    next()
+})
+
+
+// Error handling and logging for prod
+/*
+app.use((req, res, next) => {
+    console.log(`Request received at ${req.path} with method ${req.method}`);
+    console.log('Request body:', req.body);
+    next();
+}); */
 
 
 
@@ -41,6 +51,16 @@ app.get("/", (req, res) => {
 app.use('/api/inventory', inventoryRoutes)
 app.use('/api/groups', groupRoutes)
 app.use('/api/user', userRoutes)
+
+
+
+// Error handling middleware for production
+app.use((err, req, res, next) => {
+    console.error(err.stack);
+    res.status(500).json({ error: 'Internal Server Error' });
+});
+
+
 
 // connnect to db
 mongoose.connect(process.env.MONGO_URI)
@@ -57,14 +77,6 @@ mongoose.connect(process.env.MONGO_URI)
     process.exit(1); // Exit process with failure
 });
 
-
-
-
-// Error handling middleware
-app.use((err, req, res, next) => {
-    console.error(err.stack);
-    res.status(500).json({ error: 'Internal Server Error' });
-});
 
 
 //process.env
