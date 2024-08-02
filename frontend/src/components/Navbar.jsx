@@ -53,7 +53,7 @@ const Navbar = () => {
     
     useEffect(() => {
         //VerifyToken()
-        getUser()
+        //getUser()                ////////////////////////// THIS HAS BEEN DISABLED FOR PROD TESTING
     }, [cookies])
     return (
         <header>
