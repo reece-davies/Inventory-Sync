@@ -11,16 +11,19 @@ const cors = require("cors"); // cross origin resource sharing
 // express app
 const app = express()
 
-// middleware
-app.use(express.json()); // prepare us for later (use of middleware)
-app.use(cookieParser()); // cookies!
-
-
-const corsOptions = {
+/* const corsOptions = {
     origin: process.env.NODE_ENV === 'production' ? 'https://inventory-sync-frontend.onrender.com' : 'http://localhost:4000',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // If you need to handle cookies
+} */
+
+const corsOptions = {
+    origin: "https://inventory-sync-frontend.onrender.com" // frontend URI (ReactJS)
 }
+
+// middleware
+app.use(express.json()); // prepare us for later (use of middleware)
+app.use(cookieParser()); // cookies!
 
 app.use(cors(corsOptions));
 
