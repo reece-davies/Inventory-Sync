@@ -19,7 +19,7 @@ const LoginPage = () => {
         console.log(user);
 
         try {
-            const response = await fetch('/api/user/login', {
+            const response = await fetch('https://inventory-sync.onrender.com/api/user/login', {
                 method: 'POST',
                 body: JSON.stringify(user),
                 headers: {
