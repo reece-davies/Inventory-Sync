@@ -18,7 +18,7 @@ const app = express()
 } */
 
 const corsOptions = {
-    origin: process.env.FRONTEND_URI, // frontend URI (ReactJS) either 'https://inventory-sync-frontend.onrender.com' or 'http://localhost:4000'
+    origin: 'https://inventory-sync-frontend.onrender.com' , // frontend URI (ReactJS) either 'https://inventory-sync-frontend.onrender.com' or 'http://localhost:4000'
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow credentials
 }
