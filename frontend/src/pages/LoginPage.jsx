@@ -2,6 +2,7 @@ import {useEffect, useState  } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import img from '../assets/user-icon.png'
+//require('dotenv').config()
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -18,7 +19,7 @@ const LoginPage = () => {
         const user = {email, password}
         console.log(user)
 
-        const response = await fetch('https://inventory-sync.onrender.com/api/user/login', {
+        const response = await fetch('/api/user/login', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
