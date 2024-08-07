@@ -7,7 +7,7 @@ const groupRoutes = require('./routes/groupRoutes')
 const userRoutes = require('./routes/userRoutes')
 const cookieParser = require("cookie-parser");
 const cors = require("cors"); // cross origin resource sharing
-const path = require('path') // Resolves issue with routing (ROUTING ERRORS)
+//const path = require('path') // Resolves issue with routing (ROUTING ERRORS)
 
 
 // express app
@@ -19,17 +19,17 @@ const app = express()
     credentials: true, // If you need to handle cookies
 } */
 
+// CORS configuration
 const corsOptions = {
     origin: "https://inventory-sync-frontend.onrender.com" , // frontend URI (ReactJS) either 'https://inventory-sync-frontend.onrender.com' or 'http://localhost:4000'
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true, // Allow credentials
 }
 
-// middleware
-app.use(express.json()); // prepare us for later (use of middleware)
-app.use(cookieParser()); // cookies!
-
-app.use(cors(corsOptions));
+// Middleware
+app.use(express.json()); // Parse JSON bodies - prepares us for later (use of middleware)
+app.use(cookieParser()); // Parse cookies!
+app.use(cors(corsOptions)); // Apply CORS
 
 app.use((req, res, next) => {
     console.log(req.path, req.method)
@@ -60,15 +60,6 @@ app.use('/api/groups', groupRoutes)
 app.use('/api/user', userRoutes)
 
 
-// Serve static files from the React app (ROUTING ERRORS)
-app.use(express.static(path.join(__dirname, 'dist')))
-
-// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file. (ROUTING ERRORS)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html')) // Added this line
-  })
-
-
 // Error handling middleware for production
 app.use((err, req, res, next) => {
     console.error(err.stack);
@@ -76,8 +67,7 @@ app.use((err, req, res, next) => {
 });
 
 
-
-// connnect to db
+// connnect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
 .then(() => {
     console.log("Connected to MongoDB");
