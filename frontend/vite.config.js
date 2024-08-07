@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [react()],
   base: '/', // This ensures the app is served from the root
   build: {
-    outDir: 'dist', // Output directory for build files
+    outDir: '../dist', // Output directory for build files
     rollupOptions: {
       input: 'index.html', // Entry point for the build
     },
