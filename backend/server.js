@@ -7,6 +7,8 @@ const groupRoutes = require('./routes/groupRoutes')
 const userRoutes = require('./routes/userRoutes')
 const cookieParser = require("cookie-parser");
 const cors = require("cors"); // cross origin resource sharing
+const path = require('path') // Resolves issue with routing (ROUTING ERRORS)
+
 
 // express app
 const app = express()
@@ -57,6 +59,14 @@ app.use('/api/inventory', inventoryRoutes)
 app.use('/api/groups', groupRoutes)
 app.use('/api/user', userRoutes)
 
+
+// Serve static files from the React app (ROUTING ERRORS)
+app.use(express.static(path.join(__dirname, 'dist')))
+
+// The "catchall" handler: for any request that doesn't match one above, send back React's index.html file. (ROUTING ERRORS)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html')) // Added this line
+  })
 
 
 // Error handling middleware for production
