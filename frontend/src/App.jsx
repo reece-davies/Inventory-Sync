@@ -37,7 +37,7 @@ function App() {
               />
               <Route
                 path='/inventory/'
-                element={userToken ? <InventoryPage/> : <Navigate to='/login'/>}
+                element={<InventoryPage/>}
               />
               <Route
                 path='/inventory/edit/:id'
