@@ -12,6 +12,9 @@ export default defineConfig({
       input: 'index.html', // Entry point for the build
     },
   },
+  server: {
+    historyApiFallback: true // This enables history API fallback for the dev server
+  },
 })
 
 
