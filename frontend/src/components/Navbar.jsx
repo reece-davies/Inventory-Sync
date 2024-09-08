@@ -56,8 +56,13 @@ const Navbar = () => {
     }
     
     useEffect(() => {
-        //VerifyToken()
-        getUser()
+        //getUser()
+
+        const timer = setTimeout(() => {
+            getUser();
+        }, 1000); // Adjust the delay if needed
+
+        return () => clearTimeout(timer);
     }, [cookies])
     return (
         <header>
