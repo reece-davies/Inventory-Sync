@@ -29,12 +29,14 @@ const LoginUser = async (req, res, next) => {
         // create token
         const token = CreateToken(user._id)
 
-        // assign cookie?
+        // Assign cookie?
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: false,
+            sameSite: 'None', // Required for cross-origin cookies
+            maxAge: 3 * 24 * 60 * 60 * 1000 // Set for 3 days
           });
-          res.status(201).json({ message: "User logged in successfully", success: true });
+          res.status(201).json({ message: "User logged in successfully", success: true, user });
           next()
 
         //res.status(200).json({email, token})
@@ -73,6 +75,8 @@ const SignupUser = async (req, res, next) => {
         res.cookie("token", token, {
             withCredentials: true,
             httpOnly: false,
+            sameSite: 'None', // Required for cross-origin cookies
+            maxAge: 3 * 24 * 60 * 60 * 1000 // Set for 3 days
           });
           res
             .status(201)
