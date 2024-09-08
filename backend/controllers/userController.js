@@ -31,7 +31,7 @@ const LoginUser = async (req, res, next) => {
 
         // Assign cookie?
         res.cookie("token", token, {
-            withCredentials: true,
+            //withCredentials: true,
             httpOnly: false,
             secure: true,
             sameSite: 'None', // Required for cross-origin cookies
@@ -74,7 +74,7 @@ const SignupUser = async (req, res, next) => {
 
         // Assign cookie?
         res.cookie("token", token, {
-            withCredentials: true,
+            //withCredentials: true,
             httpOnly: false,
             secure: true,
             sameSite: 'None', // Required for cross-origin cookies
