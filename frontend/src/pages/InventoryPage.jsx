@@ -13,6 +13,7 @@ const InventoryPage = () => {
     useEffect(() => {
         const fetchInventory = async () => {
             try {
+                // local '/api/inventory'
                 const response = await fetch('https://inventory-sync.onrender.com/api/inventory')
                 //console.log("Response = ", response)
 
