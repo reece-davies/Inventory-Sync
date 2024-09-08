@@ -14,7 +14,7 @@ const Navbar = () => {
     const getUser = async () => {
         try {
             console.log("Navbar: fetching tokenData")
-            const tokenData = VerifyToken();
+            const tokenData = await VerifyToken(); // Added await
             console.log("Navbar: tokenData = ", tokenData)
             if (!tokenData) {
                 console.log("Invalid or no token, skipping user fetch");
@@ -24,7 +24,7 @@ const Navbar = () => {
             // local '/api/user/' & prod 'https://inventory-sync.onrender.com/api/user/'
             const response = await fetch('https://inventory-sync.onrender.com/api/user/', {
                 method: 'POST',
-                body: JSON.stringify(VerifyToken()),
+                body: JSON.stringify(tokenData), // changed from VerifyToken()
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
