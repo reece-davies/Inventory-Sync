@@ -7,11 +7,11 @@ import { jwtDecode } from "jwt-decode";
 export const VerifyTokenHook = () => {
     // From cookies YT guide
     const cookies = new Cookies()
-    const userToken = cookies.get('token');
     const [userId, setUserId] = useState('')
 
     const VerifyToken = async () => {
         try {
+            const userToken = cookies.get('token');
             if (!userToken) {
                 console.log("No token found");
                 return null;  // Return null if no token is found
