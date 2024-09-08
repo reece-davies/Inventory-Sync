@@ -36,8 +36,6 @@ const LoginUser = async (req, res, next) => {
             secure: true,
             sameSite: 'None', // Required for cross-origin cookies
             maxAge: 3 * 24 * 60 * 60 * 1000, // Set for 3 days
-            domain: '.onrender.com', // Set to cover both subdomains
-            path: '/' // Ensure this matches your path
           });
           res.status(201).json({ message: "User logged in successfully", success: true, user });
           next()
