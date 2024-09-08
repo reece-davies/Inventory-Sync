@@ -19,13 +19,15 @@ const Navbar = () => {
                 return;  // Exit if tokenData is null
             }
             
-            const response = await fetch('/api/user', {
+            // local '/api/user/' & prod 'https://inventory-sync.onrender.com/api/user/'
+            const response = await fetch('https://inventory-sync.onrender.com/api/user/', {
                 method: 'POST',
                 body: JSON.stringify(VerifyToken()),
                 headers: {
                     'Accept': 'application/json',
                     'Content-Type': 'application/json'
-                }
+                },
+                credentials: 'include'  // Important for cookies in cross-origin requests
             })
 
             if (!response.ok) {
