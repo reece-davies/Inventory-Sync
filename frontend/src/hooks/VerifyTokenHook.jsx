@@ -11,7 +11,10 @@ export const VerifyTokenHook = () => {
 
     const VerifyToken = async () => {
         try {
+            console.log("VerifyTokenHook: fetching userToken")
+            console.log("VerifyTokenHook: cookies = ", cookies)
             const userToken = cookies.get('token');
+            console.log("VerifyTokenHook: userToken = ", userToken)
             if (!userToken) {
                 console.log("No token found");
                 return null;  // Return null if no token is found

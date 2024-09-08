@@ -13,7 +13,9 @@ const Navbar = () => {
 
     const getUser = async () => {
         try {
+            console.log("Navbar: fetching tokenData")
             const tokenData = VerifyToken();
+            console.log("Navbar: tokenData = ", tokenData)
             if (!tokenData) {
                 console.log("Invalid or no token, skipping user fetch");
                 return;  // Exit if tokenData is null
