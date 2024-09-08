@@ -19,13 +19,14 @@ const LoginPage = () => {
         const user = {email, password}
         console.log(user)
 
-        // local '/api/user/login'
+        // local '/api/user/login' & prod 'https://inventory-sync.onrender.com/api/user/login'
         const response = await fetch('https://inventory-sync.onrender.com/api/user/login', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'  // Ensures cookies are sent/received even across different origins
         })
         console.log(response)
         const json = await response.json()
