@@ -1,7 +1,7 @@
 import {useEffect, useState } from 'react'
 // Cookies & JWT guide
 import Cookies from 'universal-cookie';
-import { jwtDecode } from "jwt-decode";
+import jwtDecode from "jwt-decode";
 
 // Decodes token for frontend (navbar) to use for username (userId retrieved from token) 
 export const VerifyTokenHook = () => {
@@ -12,7 +12,6 @@ export const VerifyTokenHook = () => {
     const VerifyToken = async () => {
         try {
             console.log("VerifyTokenHook: fetching userToken")
-            console.log("VerifyTokenHook: cookies = ", cookies)
             const userToken = cookies.get('token');
             console.log("VerifyTokenHook: userToken = ", userToken)
             if (!userToken) {
