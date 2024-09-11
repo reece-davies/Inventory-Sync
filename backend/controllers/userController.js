@@ -32,10 +32,11 @@ const LoginUser = async (req, res, next) => {
         // Assign cookie?
         res.cookie("token", token, {
             //withCredentials: true,
-            httpOnly: false,
-            secure: true,
-            sameSite: 'None', // Required for cross-origin cookies
-            maxAge: 3 * 24 * 60 * 60 * 1000, // Set for 3 days
+            httpOnly: false,    // Only accessible by the server
+            secure: true,       // Set to true if you're serving over HTTPS
+            sameSite: 'None',   // Required for cross-origin cookies
+            domain: '.onrender.com',            // Make sure to include the leading dot for subdomains
+            maxAge: 3 * 24 * 60 * 60 * 1000     // Set for 3 days
           });
           res.status(201).json({ message: "User logged in successfully", success: true, user });
           next()
@@ -75,10 +76,11 @@ const SignupUser = async (req, res, next) => {
         // Assign cookie?
         res.cookie("token", token, {
             //withCredentials: true,
-            httpOnly: false,
-            secure: true,
-            sameSite: 'None', // Required for cross-origin cookies
-            maxAge: 3 * 24 * 60 * 60 * 1000 // Set for 3 days
+            httpOnly: false,    // Only accessible by the server
+            secure: true,       // Set to true if you're serving over HTTPS
+            sameSite: 'None',   // Required for cross-origin cookies
+            domain: '.onrender.com',            // Make sure to include the leading dot for subdomains
+            maxAge: 3 * 24 * 60 * 60 * 1000     // Set for 3 days
           });
           res
             .status(201)
