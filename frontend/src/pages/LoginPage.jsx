@@ -43,11 +43,11 @@ const LoginPage = () => {
             console.log("Logged in - ", json)
 
             // Alert user (temporary)
-            //alert("Logged in")
+            alert("Logged in")
             
             // Navigate to inventory
             navigate("/inventory/")
-            //window.location.reload(); // to allow the userToken to be reloaded
+            window.location.reload(); // to allow the userToken to be reloaded
         }
     }
     
