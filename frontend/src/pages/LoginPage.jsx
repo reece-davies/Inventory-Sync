@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import img from '../assets/user-icon.png'
 //require('dotenv').config()
+import Cookies from 'universal-cookie';
+
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -10,6 +12,7 @@ const LoginPage = () => {
     const [emptyFields, setEmptyFields] = useState([])
     const [error, setError] = useState('')
     const navigate = useNavigate()
+    const cookies = new Cookies();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -41,6 +44,14 @@ const LoginPage = () => {
         if(response.ok) {
             setError(null)
             console.log("Logged in - ", json)
+
+            // Set the JWT (and userId?) in frontend cookies
+            cookies.set('token', json.token, {
+                //path: '/',
+                httpOnly: false,  // Set to false for frontend access
+                secure: true,     // Set to true in production (when using HTTPS)
+                sameSite: 'Strict' // Can be 'None' for cross-site; 'Strict' for same-site
+            });
 
             // Alert user (temporary)
             alert("Logged in")
