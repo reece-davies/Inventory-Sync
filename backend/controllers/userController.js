@@ -35,11 +35,11 @@ const LoginUser = async (req, res, next) => {
             httpOnly: false,    // Only accessible by the server
             secure: true,       // Set to true if you're serving over HTTPS
             sameSite: 'None',   // Required for cross-origin cookies
-            domain: 'inventory-sync-frontend.onrender.com',            // Make sure to include the leading dot for subdomains
-            path: '/',          // Ensure the cookie is available site-wide
+            //domain: 'inventory-sync-frontend.onrender.com',            // Make sure to include the leading dot for subdomains
+            //path: '/',          // Ensure the cookie is available site-wide
             maxAge: 3 * 24 * 60 * 60 * 1000     // Set for 3 days
           });
-          res.status(201).json({ message: "User logged in successfully", success: true, user });
+          res.status(201).json({ message: "User logged in successfully", success: true, token });
           next()
 
         //res.status(200).json({email, token})
@@ -80,13 +80,13 @@ const SignupUser = async (req, res, next) => {
             httpOnly: false,    // Only accessible by the server
             secure: true,       // Set to true if you're serving over HTTPS
             sameSite: 'None',   // Required for cross-origin cookies
-            domain: 'inventory-sync-frontend.onrender.com/',            // Make sure to include the leading dot for subdomains
-            path: '/',          // Ensure the cookie is available site-wide
+            //domain: 'inventory-sync-frontend.onrender.com/',            // Make sure to include the leading dot for subdomains
+            //path: '/',          // Ensure the cookie is available site-wide
             maxAge: 3 * 24 * 60 * 60 * 1000     // Set for 3 days
           });
           res
             .status(201)
-            .json({ message: "User signed in successfully", success: true, user });
+            .json({ message: "User signed in successfully", success: true, token });
           next();
 
         //res.status(200).json({email, token}) //no longer required
