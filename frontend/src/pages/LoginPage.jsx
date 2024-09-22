@@ -50,7 +50,7 @@ const LoginPage = () => {
                 //path: '/',
                 httpOnly: false,  // Set to false for frontend access
                 secure: true,     // Set to true in production (when using HTTPS)
-                sameSite: 'None' // Can be 'None' for cross-site; 'Strict' for same-site
+                sameSite: 'Strict' // Can be 'None' for cross-site; 'Strict' for same-site
             });
 
             // Alert user (temporary)
