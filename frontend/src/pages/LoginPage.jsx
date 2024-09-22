@@ -46,12 +46,14 @@ const LoginPage = () => {
             console.log("Logged in - ", json)
 
             // Set the JWT (and userId?) in frontend cookies
+            /* REVERT THIS IF IT DOES NOT WORK!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             cookies.set('token', json.token, {
                 //path: '/',
                 httpOnly: false,  // Set to false for frontend access
                 secure: true,     // Set to true in production (when using HTTPS)
                 sameSite: 'Strict' // Can be 'None' for cross-site; 'Strict' for same-site
             });
+            */
 
             // Alert user (temporary)
             alert("Logged in")
