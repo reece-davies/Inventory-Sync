@@ -20,12 +20,13 @@ const InventoryDetails = ({ inventory, index }) => {
                     label: 'Yes',
                     onClick: async () => {
                         // Perform DELETE request
-                        const response = await fetch('/api/inventory/' + inventory._id, {
+                        const response = await fetch('https://inventory-sync.onrender.com/api/inventory/' + inventory._id, {
                             method: 'DELETE',
                             body: JSON.stringify(inventory),
                             headers: {
                                 'Content-Type': 'application/json'
-                            }
+                            },
+                            credentials: 'include'
                         });
                         console.log(response);
                         const json = await response.json();
@@ -49,7 +50,15 @@ const InventoryDetails = ({ inventory, index }) => {
 
     const fetchGroupName = async () => {
         try {
-            const response = await fetch('/api/groups/' + inventory.group); // Use inventory.group
+            // local ('/api/groups/' + inventory.group)
+            // Use inventory.group
+            const response = await fetch('https://inventory-sync.onrender.com/api/groups/' + inventory.group, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include' // Include cookies in the request
+            });
 
             if (!response.ok) {
                 throw new Error('Failed to fetch group');
