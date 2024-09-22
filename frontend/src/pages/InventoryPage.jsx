@@ -14,7 +14,13 @@ const InventoryPage = () => {
         const fetchInventory = async () => {
             try {
                 // local '/api/inventory'
-                const response = await fetch('https://inventory-sync.onrender.com/api/inventory')
+                const response = await fetch('https://inventory-sync.onrender.com/api/inventory', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include', // Include cookies in the request
+                })
                 //console.log("Response = ", response)
 
                 if (!response.ok) {
