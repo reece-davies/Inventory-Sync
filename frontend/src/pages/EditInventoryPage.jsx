@@ -21,14 +21,14 @@ const EditInventoryPage = () => {
         const fetchInventory = async () => {
             try {
                 // local '/api/inventory/'
-                const response = await fetch('/api/inventory/' + id.toString(), {
+                const response = await fetch('https://inventory-sync.onrender.com/api/inventory/' + id.toString(), {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     credentials: 'include', // Include cookies in the request
                 })
-                
+
                 console.log('id string = /api/inventory/' + id.toString())
 
                 if (!response.ok) {
