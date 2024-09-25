@@ -15,7 +15,8 @@ const Navbar = () => {
         try {
             console.log("Navbar: fetching tokenData")
             const tokenData = await VerifyToken(); // Added await
-            console.log("Navbar: tokenData = ", tokenData)
+            //console.log("Navbar: tokenData = ", tokenData)
+            console.log("Token acquired")
             if (!tokenData) {
                 console.log("Invalid or no token, skipping user fetch");
                 return;  // Exit if tokenData is null
@@ -42,7 +43,8 @@ const Navbar = () => {
             }
             
             const json = await response.json()
-            console.log("User verification = ", json)
+            //console.log("User verification = ", json)
+            console.log("User verification complete")
             setUser(json.username)
         } catch (error) {
             console.error('Error fetching user:', error)
