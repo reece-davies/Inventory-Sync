@@ -14,7 +14,15 @@ const EditInventoryForm = ({ inventory, userId }) => {
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const response = await fetch('/api/groups')
+                //const response = await fetch('/api/groups')
+                // local '/api/groups'
+                const response = await fetch('https://inventory-sync.onrender.com/api/groups', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include', // Include cookies in the request
+                })
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch group')
@@ -41,7 +49,8 @@ const EditInventoryForm = ({ inventory, userId }) => {
 
         const editedInventory = {title, description, group: selectedGroupId, status}
 
-        const response = await fetch('/api/inventory/'+inventory._id, {
+        // local '/api/inventory/
+        const response = await fetch('https://inventory-sync.onrender.com/api/inventory/'+inventory._id, {
             method: 'PATCH',
             body: JSON.stringify(editedInventory),
             headers: {
