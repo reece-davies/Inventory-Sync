@@ -19,7 +19,13 @@ const InventoryForm = ({userId}) => {
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const response = await fetch('/api/groups')
+                const response = await fetch('/api/groups', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include', // Include cookies in the request
+                })
 
                 if (!response.ok) {
                     throw new Error('Failed to fetch group')
