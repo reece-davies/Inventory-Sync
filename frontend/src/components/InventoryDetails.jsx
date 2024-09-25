@@ -26,7 +26,7 @@ const InventoryDetails = ({ inventory, index }) => {
                             headers: {
                                 'Content-Type': 'application/json'
                             },
-                            credentials: 'include'
+                            credentials: 'include' // Include cookies in the request
                         });
                         console.log(response);
                         const json = await response.json();

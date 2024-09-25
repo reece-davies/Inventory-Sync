@@ -46,7 +46,8 @@ const EditInventoryForm = ({ inventory, userId }) => {
             body: JSON.stringify(editedInventory),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include' // Include cookies in the request
         })
         console.log(response)
         const json = await response.json()

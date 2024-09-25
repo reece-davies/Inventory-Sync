@@ -56,12 +56,14 @@ const InventoryForm = ({userId}) => {
             return setError("Status is required")
         } */
 
-        const response = await fetch('/api/inventory', {
+        // local '/api/inventory'
+        const response = await fetch('https://inventory-sync.onrender.com/api/inventory', {
             method: 'POST',
             body: JSON.stringify(inventory),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include' // Include cookies in the request
         })
         console.log(response)
         const json = await response.json()
