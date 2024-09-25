@@ -47,7 +47,7 @@ const LoginPage = () => {
 
             // Set the JWT (and userId?) in frontend cookies
             /* 
-            *** PLEASE NOTE THAT THIS DOES NOT ACTUALLY DO ANYTHING BECAUSE THE BACKEND'S COOKIE IS WORKING AND USED INSTEAD OF THE FRONTENDS COOKIE CREATION *** 
+            *** PLEASE NOTE THAT THIS IS FOR FRONTEND VERIFICATION - NOT BACKEND (EVEN THOUGH IT HAS THE SAME NAME) *** 
             */
             cookies.set('token', json.token, {
                 //path: '/',
@@ -55,7 +55,6 @@ const LoginPage = () => {
                 secure: true,     // Set to true in production (when using HTTPS)
                 sameSite: 'Strict' // Can be 'None' for cross-site; 'Strict' for same-site
             });
-            
 
             // Alert user (temporary)
             alert("Logged in")

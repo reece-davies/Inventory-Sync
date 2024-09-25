@@ -24,12 +24,14 @@ const SignupPage = () => {
             return setError("Passwords do not match")
         }
 
-        const response = await fetch('/api/user/signup', {
+        // local '/api/user/signup' & prod 'https://inventory-sync.onrender.com/api/user/signup'
+        const response = await fetch('https://inventory-sync.onrender.com/api/user/signup', {
             method: 'POST',
             body: JSON.stringify(user),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include'  // Ensures cookies are sent/received even across different origins
         })
         console.log(response)
         const json = await response.json()
@@ -44,6 +46,17 @@ const SignupPage = () => {
         if(response.ok) {
             setError(null)
             console.log("Signed up - ", json)
+
+            // Set the JWT (and userId?) in frontend cookies
+            /* 
+            *** PLEASE NOTE THAT THIS IS FOR FRONTEND VERIFICATION - NOT BACKEND (EVEN THOUGH IT HAS THE SAME NAME) *** 
+            */
+            cookies.set('token', json.token, {
+                //path: '/',
+                httpOnly: false,  // Set to false for frontend access
+                secure: true,     // Set to true in production (when using HTTPS)
+                sameSite: 'Strict' // Can be 'None' for cross-site; 'Strict' for same-site
+            });
 
             // Alert user (temporary)
             alert("Signed up")
