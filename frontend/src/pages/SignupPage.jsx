@@ -2,6 +2,7 @@ import {useEffect, useState  } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import img from '../assets/user-icon.png'
+import Cookies from 'universal-cookie';
 
 const SignupPage = () => {
     const [email, setEmail] = useState('')
@@ -11,6 +12,7 @@ const SignupPage = () => {
     const [emptyFields, setEmptyFields] = useState([])
     const [error, setError] = useState('')
     const navigate = useNavigate()
+    const cookies = new Cookies();
 
     const handleSubmit = async (e) => {
         e.preventDefault()
