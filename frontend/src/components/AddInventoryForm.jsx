@@ -19,7 +19,8 @@ const InventoryForm = ({userId}) => {
     useEffect(() => {
         const fetchGroups = async () => {
             try {
-                const response = await fetch('/api/groups', {
+                // local '/api/groups'
+                const response = await fetch('https://inventory-sync.onrender.com/api/groups', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
