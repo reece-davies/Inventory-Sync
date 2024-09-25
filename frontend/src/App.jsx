@@ -37,7 +37,7 @@ function App() {
               />
               <Route
                 path='/inventory/'
-                element={<InventoryPage/>} // THIS NEEDS TO BE REVERTED BACK TO    element={userToken ? <InventoryPage/> : <Navigate to='/login'/>}
+                element={userToken ? <InventoryPage/> : <Navigate to='/login'/>}
               />
               <Route
                 path='/inventory/edit/:id'
