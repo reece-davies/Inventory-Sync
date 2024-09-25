@@ -18,12 +18,14 @@ const GroupForm = ({userId}) => {
             return setError("Group Name is required")
         }
 
-        const response = await fetch('/api/groups', {
+        // local '/api/groups'
+        const response = await fetch('https://inventory-sync.onrender.com/api/groups', {
             method: 'POST',
             body: JSON.stringify(group),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include', // Include cookies in the request
         })
         console.log(response)
         const json = await response.json()

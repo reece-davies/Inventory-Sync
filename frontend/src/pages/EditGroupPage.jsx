@@ -18,7 +18,15 @@ const EditGroupPage = () => {
     useEffect(() => {
         const fetchGroup = async () => {
             try {
-                const response = await fetch('/api/groups/' + id.toString())
+                // local '/api/groups/' + id.toString()
+                const response = await fetch('https://inventory-sync.onrender.com/api/groups/' + id.toString(), {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    credentials: 'include', // Include cookies in the request
+                })
+                
                 //console.log("Response = ", response)
                 console.log('id string = /api/groups/' + id.toString())
 

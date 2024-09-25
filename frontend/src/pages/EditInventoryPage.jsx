@@ -20,7 +20,7 @@ const EditInventoryPage = () => {
     useEffect(() => {
         const fetchInventory = async () => {
             try {
-                // local '/api/inventory/'
+                // local '/api/inventory/' + id.toString()
                 const response = await fetch('https://inventory-sync.onrender.com/api/inventory/' + id.toString(), {
                     method: 'GET',
                     headers: {

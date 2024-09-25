@@ -13,7 +13,14 @@ const GroupDetails = ({ group, index }) => {
     const handleDelete = async () => {
 
         try {
-            const response = await fetch('/api/inventory/groupid/'+group._id)
+            // local '/api/inventory/groupid/'+group._id
+            const response = await fetch('https://inventory-sync.onrender.com/api/inventory/groupid/'+group._id, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                credentials: 'include', // Include cookies in the request
+            })
             console.log("Response = ", response)
 
             if (!response.ok) {
@@ -36,12 +43,14 @@ const GroupDetails = ({ group, index }) => {
                             label: 'Yes',
                             onClick: async () => {
                                 // Perform DELETE request
-                                const response = await fetch('/api/groups/' + group._id, {
+                                // local '/api/groups/' + group._id
+                                const response = await fetch('https://inventory-sync.onrender.com/api/groups/' + group._id, {
                                     method: 'DELETE',
                                     body: JSON.stringify(group),
                                     headers: {
                                         'Content-Type': 'application/json'
-                                    }
+                                    },
+                                    credentials: 'include', // Include cookies in the request
                                 })
                                 console.log(response)
                                 const json = await response.json()

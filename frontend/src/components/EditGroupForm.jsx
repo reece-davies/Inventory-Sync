@@ -12,12 +12,14 @@ const EditGroupForm = ({ group, userId}) => {
 
         const editedGroup = {group_name, notes}
 
-        const response = await fetch('/api/groups/'+group._id, {
+        // local '/api/groups/'+group._id
+        const response = await fetch('https://inventory-sync.onrender.com/api/groups/'+group._id, {
             method: 'PATCH',
             body: JSON.stringify(editedGroup),
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            credentials: 'include', // Include cookies in the request
         })
         console.log(response)
         const json = await response.json()
